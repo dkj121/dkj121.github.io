@@ -10,7 +10,10 @@ export function ProfileFooter() {
 						dkj121
 					</p>
 					<p className="text-sm text-[var(--color-text-muted)]">
-						Writing about code, literature, and the spaces between.
+						记录我们的学习，记录我们的生活
+					</p>
+					<p className="text-sm text-[var(--color-text-muted)]">
+						record our learning, record our life
 					</p>
 				</div>
 			</div>
