@@ -1,26 +1,111 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/preset.css';
+@import 'fumadocs-ui/css/neutral.css';
 
+@source '../node_modules/fumadocs-ui/dist/**/*.js';
+
+/* ── Brown theme tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--color-bg: #5d4037;
+	--color-text: #fcfaf7;
+	--color-text-muted: #bcaaa4;
+	--color-accent: #ffcc80;
+	--color-accent-dim: #a1887f;
+	--color-divider: #795548;
+	--color-card: #4e342e;
+
+	--font-heading: 'FangSong', 'FangSong_GB2312', 'STFangsong', 'Noto Serif SC',
+		serif;
+	--font-body: 'Bahnschrift Light', 'Bahnschrift', 'Segoe UI', 'DIN Next Light',
+		sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Override Fumadocs neutral to brown ── */
+:root {
+	--fd-background: var(--color-bg);
+	--fd-foreground: var(--color-text);
+	--fd-muted: var(--color-text-muted);
+	--fd-border: var(--color-divider);
+	--fd-accent: var(--color-accent);
+	--fd-card: var(--color-card);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ── Base ── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-body);
+	min-height: 100dvh;
+}
+
+/* ── Marginalia post layout ── */
+.post-layout {
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	gap: 0;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+}
+
+.post-layout > .content {
+	padding-right: 2rem;
+}
+
+.post-layout > .sidebar {
+	padding-left: 1.5rem;
+	border-left: 1px solid var(--color-divider);
+	overflow: hidden;
+}
+
+/* Auto-fold: sidebar collapses below 900px */
+@media (max-width: 900px) {
+	.post-layout {
+		grid-template-columns: 1fr;
+	}
+	.post-layout > .sidebar {
+		display: none;
+	}
+}
+
+/* ── Profile card ── */
+.profile-card {
+	background: var(--color-card);
+	border-top: 1px solid var(--color-divider);
+	border-bottom: 1px solid var(--color-divider);
+}
+
+/* ── Terminal menu ── */
+.terminal-menu {
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	line-height: 1.5;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+}
+
+.terminal-menu .prompt {
+	color: #66bb6a;
+}
+
+.terminal-menu .pipe {
+	color: #ffcc80;
+}
+
+.terminal-menu .col-header {
+	color: var(--color-text-muted);
+}
+
+.terminal-menu .row-date {
+	color: var(--color-text-muted);
+}
+
+.terminal-menu .row-title {
+	color: var(--color-text);
+}
+
+.terminal-menu .row-topic {
+	color: var(--color-accent);
 }
