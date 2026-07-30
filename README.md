@@ -1,6 +1,8 @@
 # dkj121.github.io
 
-dkj121`s blog
+![image](designs/home-v4.png)
+
+dkj121`s blog with brown teminal style
 
 ```txt
 
