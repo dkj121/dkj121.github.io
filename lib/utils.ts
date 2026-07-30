@@ -10,10 +10,10 @@ export type Command =
 export function parseCommand(input: string): Command {
 	const trimmed = input.trim();
 
-	if (!trimmed || trimmed === "ls") return { type: "clear" };
+	if (!trimmed || trimmed === "--list") return { type: "clear" };
 
 	if (trimmed === "--help") return { type: "help" };
-	if (trimmed === "clear" || trimmed === "reset") return { type: "clear" };
+	if (trimmed === "--clear" || trimmed === "--reset") return { type: "clear" };
 
 	// --where topic=ai
 	const whereMatch = trimmed.match(/^--where\s+(\w+)=(.+)$/i);
@@ -84,16 +84,16 @@ export function applyCommand(items: any[], cmd: Command): any[] {
 
 export const HELP_TEXT = `
 dkj121@blog CLI v1.0
-──────────────────────
-  ls               show all posts
-  --help           show this help
-  --where <k>=<v>  filter posts where field k equals value v
-                   e.g. --where topic=cpp
-  --filter <k>:<v> filter posts where field k contains value v
-                   e.g. --filter title:智能
-  --orderby <f>    sort by field f (optionally: desc)
-                   e.g. --orderby date desc
-  --select <f,...> select specific fields
-                   e.g. --select title,date
-  clear | reset    reset all filters
+─────────────────────────────────────
+  --list               show all posts
+  --help               show this help
+  --where <k>=<v>      filter posts where field k equals value v
+                       e.g. --where topic=cpp
+  --filter <k>:<v>     filter posts where field k contains value v
+                       e.g. --filter title:智能
+  --orderby <f>        sort by field f (optionally: desc)
+                       e.g. --orderby date desc
+  --select <f,...>     select specific fields
+                       e.g. --select title,date
+  --clear | --reset    reset all filters
 `.trim();

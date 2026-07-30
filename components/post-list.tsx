@@ -82,7 +82,7 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 					onChange={(e) => setCommand(e.target.value)}
 					onKeyDown={handleKeyDown}
 					className="flex-1 border-none bg-transparent text-sm font-[var(--font-mono)] text-[var(--color-text)] outline-none"
-					placeholder="ls --sort=date"
+					placeholder="--list"
 					spellCheck={false}
 					autoComplete="off"
 				/>
