@@ -1,9 +1,8 @@
+import { getAllPosts } from '@/lib/posts';
+import { PostList } from '@/components/post-list';
+
 export default function Home() {
-	return(
-		<div>
-			<h1>
-				Hello~
-			</h1>
-		</div>
-	);
+	const posts = getAllPosts();
+
+	return <PostList posts={posts} />;
 }
