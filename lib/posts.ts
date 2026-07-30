@@ -15,39 +15,27 @@ export interface PostMeta {
 }
 
 export interface PostWithContent extends PostMeta {
-	marginalia: { id: string; content: string }[];
 	contentHtml: string;
 }
 
-function extractMarginalia(rawMd: string): {
-	content: string;
-	marginalia: { id: string; content: string }[];
-} {
-	const notes: { id: string; content: string }[] = [];
-	let cleaned = rawMd;
+function escapeHtml(str: string): string {
+	return str
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/'/g, "&#039;");
+}
 
-	// Match > [!note] content blocks
-	const noteRegex = /> \[!note\]\s*(.+?)(?:\n(?:> .*)*)?/gm;
-	let match;
-	let count = 0;
-
-	while ((match = noteRegex.exec(rawMd)) !== null) {
-		const id = `marg-${count}`;
-		// Extract note content (everything after [!note] marker)
-		const noteContent = match[0]
-			.replace(/> \[!note\]\s*/, "")
-			.replace(/^> ?/gm, "")
-			.trim();
-		notes.push({ id, content: noteContent });
-		// Replace the note block with a reference marker in the body
-		cleaned = cleaned.replace(
-			match[0],
-			`<sup class="marginalia-ref">[${String.fromCodePoint(0x2460 + count)}]</sup>`,
-		);
-		count++;
-	}
-
-	return { content: cleaned, marginalia: notes };
+function processMarginalia(rawMd: string): string {
+	// Convert > [!note] blocks to inline <aside class="marginalia"> with # marker
+	return rawMd.replace(
+		/> \[!note\][ \t]*\n?((?:> .*\n?)*)/gm,
+		(_match: string, body: string) => {
+			const content = escapeHtml(body.replace(/^> ?/gm, "").trim());
+			return `<aside class="marginalia"># ${content}</aside>\n`;
+		},
+	);
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -96,19 +84,17 @@ export async function getPostBySlug(
 	if (!raw) return null;
 
 	const { data, content: mdBody } = matter(raw);
-	const { content: cleanedMd, marginalia } = extractMarginalia(mdBody);
-
+	const processed = processMarginalia(mdBody);
 	const result = await remark()
 		.use(remarkGfm)
 		.use(remarkHtml)
-		.process(cleanedMd);
+		.process(processed);
 
 	return {
 		slug,
 		title: data.title ?? slug,
 		date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "----",
 		topic: data.topic ?? "",
-		marginalia,
 		contentHtml: result.toString(),
 	};
 }

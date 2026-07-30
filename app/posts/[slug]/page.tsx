@@ -13,12 +13,7 @@ export default async function PostPage({ params }: Props) {
 	if (!post) notFound();
 
 	return (
-		<PostContent
-			title={post.title}
-			date={post.date}
-			topic={post.topic}
-			marginalia={post.marginalia}
-		>
+		<PostContent title={post.title} date={post.date} topic={post.topic}>
 			<div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
 		</PostContent>
 	);
