@@ -4,7 +4,6 @@
 
 @source "../node_modules/fumadocs-ui/dist/**/*.js";
 
-/* ── Brown theme tokens ── */
 :root {
 	--color-bg: #5d4037;
 	--color-text: #fcfaf7;
@@ -19,12 +18,8 @@
 	--font-body:
 		"Bahnschrift Light", "Bahnschrift", "Segoe UI", "DIN Next Light", sans-serif;
 	--font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
-
-	--sidebar-w: 260px;
-	--sidebar-gap: 2rem;
 }
 
-/* ── Override Fumadocs neutral to brown ── */
 :root {
 	--fd-background: var(--color-bg);
 	--fd-foreground: var(--color-text);
@@ -34,7 +29,6 @@
 	--fd-card: var(--color-card);
 }
 
-/* ── Base ── */
 body {
 	background: var(--color-bg);
 	color: var(--color-text);
@@ -44,45 +38,9 @@ body {
 
 /* ── Post article ── */
 .post-article {
-	max-width: 900px;
+	max-width: 720px;
 	margin: 0 auto;
 	padding: 2rem 1.5rem;
-}
-
-/* Wider screens: make room for floated marginalia on the right */
-@media (min-width: 961px) {
-	.post-article {
-		/* content stays at readable width, sidebar floats into the margin */
-		padding-right: calc(var(--sidebar-w) + var(--sidebar-gap) + 1.5rem);
-	}
-}
-
-/* ── Marginalia: floats right, parallel to its context ── */
-aside.marginalia {
-	float: right;
-	clear: right;
-	width: var(--sidebar-w);
-	margin-right: calc(-1 * (var(--sidebar-w) + var(--sidebar-gap)));
-	margin-left: var(--sidebar-gap);
-	margin-bottom: 0.5rem;
-	padding-left: 1.25rem;
-	border-left: 1px solid var(--color-divider);
-	font-size: 0.8125rem;
-	line-height: 1.65;
-	color: var(--color-text-muted);
-	font-style: italic;
-	font-family: var(--font-body);
-}
-
-/* Auto-fold: marginalia becomes inline blockquote below 961px */
-@media (max-width: 960px) {
-	aside.marginalia {
-		float: none;
-		width: auto;
-		margin: 1rem 0;
-		padding-left: 1rem;
-		border-left: 2px solid var(--color-divider);
-	}
 }
 
 /* ── Profile card ── */

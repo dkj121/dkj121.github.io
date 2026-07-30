@@ -18,26 +18,6 @@ export interface PostWithContent extends PostMeta {
 	contentHtml: string;
 }
 
-function escapeHtml(str: string): string {
-	return str
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;")
-		.replace(/'/g, "&#039;");
-}
-
-function processMarginalia(rawMd: string): string {
-	// Convert > [!note] blocks to inline <aside class="marginalia"> with # marker
-	return rawMd.replace(
-		/> \[!note\][ \t]*\n?((?:> .*\n?)*)/gm,
-		(_match: string, body: string) => {
-			const content = escapeHtml(body.replace(/^> ?/gm, "").trim());
-			return `<aside class="marginalia"># ${content}</aside>\n`;
-		},
-	);
-}
-
 export function getAllPosts(): PostMeta[] {
 	if (!fs.existsSync(postsDir)) return [];
 
@@ -84,11 +64,7 @@ export async function getPostBySlug(
 	if (!raw) return null;
 
 	const { data, content: mdBody } = matter(raw);
-	const processed = processMarginalia(mdBody);
-	const result = await remark()
-		.use(remarkGfm)
-		.use(remarkHtml)
-		.process(processed);
+	const result = await remark().use(remarkGfm).use(remarkHtml).process(mdBody);
 
 	return {
 		slug,
