@@ -38,7 +38,6 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 			case "where":
 			case "filter":
 			case "orderby":
-			case "select":
 				setFiltered(
 					applyCommand(
 						filtered.length < posts.length ? filtered : posts,
@@ -83,7 +82,7 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 					onChange={(e) => setCommand(e.target.value)}
 					onKeyDown={handleKeyDown}
 					className="flex-1 border-none bg-transparent text-sm font-[var(--font-mono)] text-[var(--color-text)] outline-none"
-					placeholder="--list"
+					placeholder="--help"
 					spellCheck={false}
 					autoComplete="off"
 				/>
@@ -135,7 +134,7 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 			{/* Command history */}
 			{history.length > 0 && (
 				<div className="mt-6 border-t border-[var(--color-divider)] pt-2">
-					{history.slice(-3).map((cmd, i) => (
+					{history.map((cmd, i) => (
 						<p
 							key={i}
 							className="text-xs font-[var(--font-mono)] text-[var(--color-text-muted)]"

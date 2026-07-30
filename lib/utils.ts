@@ -3,7 +3,6 @@ export type Command =
 	| { type: "where"; field: string; value: string }
 	| { type: "filter"; field: string; value: string }
 	| { type: "orderby"; field: string; asc: boolean }
-	| { type: "select"; fields: string[] }
 	| { type: "clear" }
 	| { type: "unknown"; raw: string };
 
@@ -45,15 +44,6 @@ export function parseCommand(input: string): Command {
 		};
 	}
 
-	// --select title,date
-	const selectMatch = trimmed.match(/^--select\s+(.+)$/i);
-	if (selectMatch) {
-		return {
-			type: "select",
-			fields: selectMatch[1].split(",").map((s) => s.trim().toLowerCase()),
-		};
-	}
-
 	return { type: "unknown", raw: trimmed };
 }
 
@@ -75,8 +65,6 @@ export function applyCommand(items: any[], cmd: Command): any[] {
 				const bv = String(b[cmd.field] ?? "");
 				return cmd.asc ? av.localeCompare(bv) : bv.localeCompare(av);
 			});
-		case "select":
-			return items;
 		default:
 			return items;
 	}
@@ -88,12 +76,10 @@ dkj121@blog CLI v1.0
   --list               show all posts
   --help               show this help
   --where <k>=<v>      filter posts where field k equals value v
-                       e.g. --where topic=cpp
+                       e.g. --where k=v
   --filter <k>:<v>     filter posts where field k contains value v
-                       e.g. --filter title:智能
-  --orderby <f>        sort by field f (optionally: desc)
-                       e.g. --orderby date desc
-  --select <f,...>     select specific fields
-                       e.g. --select title,date
+                       e.g. --filter k:v
+  --orderby <f>        sort by field f (optionally: date title topic)
+                       e.g. --orderby f
   --clear | --reset    reset all filters
 `.trim();
