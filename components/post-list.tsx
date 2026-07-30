@@ -5,8 +5,10 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 	return (
 		<main className="terminal-menu">
 			{/* CLI prompt */}
-			<p className="prompt">dkj121@blog:~/posts$ ls -la --sort=date</p>
-
+			<div className="prompt">
+				dkj121@blog:~/posts$ ls
+				<input type="text" className="bg-transparent text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none" placeholder="Sort by..." />
+			</div>
 			{/* Column headers */}
 			<div className="mt-4 grid grid-cols-3 gap-4">
 				<span className="col-header">DATE</span>

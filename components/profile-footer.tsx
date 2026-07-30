@@ -4,7 +4,7 @@ export function ProfileFooter() {
 	return (
 		<footer className="profile-card mx-auto mt-16 max-w-[900px] px-6 py-8">
 			<div className="flex items-center gap-4">
-				<Image src="/dkj121.png" alt="Profile Image" height={56} width={56} className="h-14 w-14 rounded-full" />
+				<Image src="/dkj121.png" alt="Profile Image" width={56} height={64} />
 				<div>
 					<p className="text-lg font-semibold text-[var(--color-text)]">
 						dkj121
