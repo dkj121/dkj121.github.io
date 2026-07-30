@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { ProfileFooter } from '@/components/profile-footer';
+import type { Metadata } from "next";
+import "./globals.css";
+import { ProfileFooter } from "@/components/profile-footer";
 
 export const metadata: Metadata = {
-	title: 'dkj121',
+	title: "dkj121",
 	description: "dkj121's blog",
 };
 

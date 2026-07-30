@@ -6,7 +6,9 @@ export function ProfileFooter() {
 					DK
 				</div>
 				<div>
-					<p className="text-lg font-semibold text-[var(--color-text)]">dkj121</p>
+					<p className="text-lg font-semibold text-[var(--color-text)]">
+						dkj121
+					</p>
 					<p className="text-sm text-[var(--color-text-muted)]">
 						Writing about code, literature, and the spaces between.
 					</p>
@@ -22,7 +24,10 @@ export function ProfileFooter() {
 					github
 				</a>
 				<span className="text-[var(--color-divider)]">|</span>
-				<a href="/rss.xml" className="transition-colors hover:text-[var(--color-accent)]">
+				<a
+					href="/rss.xml"
+					className="transition-colors hover:text-[var(--color-accent)]"
+				>
 					rss
 				</a>
 			</div>

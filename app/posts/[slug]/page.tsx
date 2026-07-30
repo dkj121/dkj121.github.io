@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
-import { getAllPosts, getPostBySlug } from '@/lib/posts';
-import { PostContent } from '@/components/post-content';
+import { notFound } from "next/navigation";
+import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { PostContent } from "@/components/post-content";
 
 interface Props {
 	params: Promise<{ slug: string }>;

@@ -1,8 +1,8 @@
-@import 'tailwindcss';
-@import 'fumadocs-ui/css/preset.css';
-@import 'fumadocs-ui/css/neutral.css';
+@import "tailwindcss";
+@import "fumadocs-ui/css/preset.css";
+@import "fumadocs-ui/css/neutral.css";
 
-@source '../node_modules/fumadocs-ui/dist/**/*.js';
+@source "../node_modules/fumadocs-ui/dist/**/*.js";
 
 /* ── Brown theme tokens ── */
 :root {
@@ -14,11 +14,11 @@
 	--color-divider: #795548;
 	--color-card: #4e342e;
 
-	--font-heading: 'FangSong', 'FangSong_GB2312', 'STFangsong', 'Noto Serif SC',
-		serif;
-	--font-body: 'Bahnschrift Light', 'Bahnschrift', 'Segoe UI', 'DIN Next Light',
-		sans-serif;
-	--font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+	--font-heading:
+		"FangSong", "FangSong_GB2312", "STFangsong", "Noto Serif SC", serif;
+	--font-body:
+		"Bahnschrift Light", "Bahnschrift", "Segoe UI", "DIN Next Light", sans-serif;
+	--font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
 }
 
 /* ── Override Fumadocs neutral to brown ── */

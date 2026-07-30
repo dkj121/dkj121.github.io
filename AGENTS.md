@@ -32,12 +32,10 @@
 ### Color Reference
 
 ```css
---color-bg:        #5D4037   (warm brown, entire page)
---color-text:      #FCFAF7   (light cream body text)
---color-text-muted:#BCAAA4   (secondary text)
---color-accent:    #FFCC80   (amber topic tags)
---color-divider:   #795548   (hairlines)
---color-card:      #4E342E   (profile card bg)
+--color-bg: #5d4037 (warm brown, entire page) --color-text: #fcfaf7
+	(light cream body text) --color-text-muted: #bcaaa4 (secondary text)
+	--color-accent: #ffcc80 (amber topic tags) --color-divider: #795548
+	(hairlines) --color-card: #4e342e (profile card bg);
 ```
 
 ## Marginalia Syntax

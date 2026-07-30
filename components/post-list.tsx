@@ -1,13 +1,11 @@
-import Link from 'next/link';
-import type { PostMeta } from '@/lib/posts';
+import Link from "next/link";
+import type { PostMeta } from "@/lib/posts";
 
 export function PostList({ posts }: { posts: PostMeta[] }) {
 	return (
 		<main className="terminal-menu">
 			{/* CLI prompt */}
-			<p className="prompt">
-				dkj121@blog:~/posts$ ls -la --sort=date
-			</p>
+			<p className="prompt">dkj121@blog:~/posts$ ls -la --sort=date</p>
 
 			{/* Column headers */}
 			<div className="mt-4 grid grid-cols-3 gap-4">

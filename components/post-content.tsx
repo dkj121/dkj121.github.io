@@ -1,5 +1,4 @@
-import { type ReactNode } from 'react';
-import { ProfileFooter } from '@/components/profile-footer';
+import { type ReactNode } from "react";
 
 interface PostContentProps {
 	title: string;
@@ -22,21 +21,21 @@ export function PostContent({
 				{/* Main content column */}
 				<div className="content">
 					{/* Category label */}
-					<p className="mb-2 font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-accent-dim)]">
+					<p className="mb-2 text-xs font-[var(--font-mono)] tracking-[0.2em] text-[var(--color-accent-dim)] uppercase">
 						{topic}
 					</p>
 
 					{/* Title */}
-					<h1 className="mb-4 font-[var(--font-heading)] text-4xl font-bold leading-tight text-[var(--color-text)]">
+					<h1 className="mb-4 text-4xl leading-tight font-[var(--font-heading)] font-bold text-[var(--color-text)]">
 						{title}
 					</h1>
 
 					{/* Metadata */}
-					<p className="mb-8 font-[var(--font-body)] text-sm text-[var(--color-text-muted)]">
-						{new Date(date).toLocaleDateString('zh-CN', {
-							year: 'numeric',
-							month: 'long',
-							day: 'numeric',
+					<p className="mb-8 text-sm font-[var(--font-body)] text-[var(--color-text-muted)]">
+						{new Date(date).toLocaleDateString("zh-CN", {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
 						})}
 					</p>
 
@@ -44,7 +43,7 @@ export function PostContent({
 					<div className="mb-8 border-t border-[var(--color-divider)]" />
 
 					{/* Article body */}
-					<div className="prose prose-invert font-[var(--font-body)] leading-relaxed text-[var(--color-text)] [&_h2]:font-[var(--font-heading)] [&_h2]:text-[var(--color-text)] [&_h3]:font-[var(--font-heading)] [&_p]:text-[var(--color-text)]">
+					<div className="prose-invert prose leading-relaxed font-[var(--font-body)] text-[var(--color-text)] [&_h2]:font-[var(--font-heading)] [&_h2]:text-[var(--color-text)] [&_h3]:font-[var(--font-heading)] [&_p]:text-[var(--color-text)]">
 						{children}
 					</div>
 				</div>
@@ -52,7 +51,7 @@ export function PostContent({
 				{/* Marginalia sidebar */}
 				{marginalia.length > 0 && (
 					<aside className="sidebar">
-						<p className="mb-4 font-[var(--font-heading)] text-sm text-[var(--color-accent-dim)]">
+						<p className="mb-4 text-sm font-[var(--font-heading)] text-[var(--color-accent-dim)]">
 							旁注
 						</p>
 						{marginalia.map((note, i) => (

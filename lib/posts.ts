@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkGfm from 'remark-gfm';
-import remarkHtml from 'remark-html';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import remarkGfm from "remark-gfm";
+import remarkHtml from "remark-html";
 
-const postsDir = path.join(process.cwd(), 'content/posts');
+const postsDir = path.join(process.cwd(), "content/posts");
 
 export interface PostMeta {
 	slug: string;
@@ -34,9 +34,9 @@ function extractMarginalia(rawMd: string): {
 	while ((match = noteRegex.exec(rawMd)) !== null) {
 		const id = `marg-${count}`;
 		// Extract note content (everything after [!note] marker)
-		let noteContent = match[0]
-			.replace(/> \[!note\]\s*/, '')
-			.replace(/^> ?/gm, '')
+		const noteContent = match[0]
+			.replace(/> \[!note\]\s*/, "")
+			.replace(/^> ?/gm, "")
 			.trim();
 		notes.push({ id, content: noteContent });
 		// Replace the note block with a reference marker in the body
@@ -53,22 +53,24 @@ function extractMarginalia(rawMd: string): {
 export function getAllPosts(): PostMeta[] {
 	if (!fs.existsSync(postsDir)) return [];
 
-	const files = fs.readdirSync(postsDir).filter((f) => f.endsWith('.mdx') || f.endsWith('.md'));
+	const files = fs
+		.readdirSync(postsDir)
+		.filter((f) => f.endsWith(".mdx") || f.endsWith(".md"));
 
 	const posts = files.map((file) => {
-		const raw = fs.readFileSync(path.join(postsDir, file), 'utf-8');
+		const raw = fs.readFileSync(path.join(postsDir, file), "utf-8");
 		const { data } = matter(raw);
 		const parsedDate = data.date ? new Date(data.date) : null;
 		return {
-			slug: file.replace(/\.(mdx|md)$/, ''),
+			slug: file.replace(/\.(mdx|md)$/, ""),
 			title: data.title ?? file,
-			date: parsedDate && !isNaN(parsedDate.getTime())
-				? parsedDate.toISOString().slice(0, 10)
-				: '----',
-			topic: data.topic ?? '',
-			_sortDate: parsedDate && !isNaN(parsedDate.getTime())
-				? parsedDate.getTime()
-				: 0,
+			date:
+				parsedDate && !isNaN(parsedDate.getTime())
+					? parsedDate.toISOString().slice(0, 10)
+					: "----",
+			topic: data.topic ?? "",
+			_sortDate:
+				parsedDate && !isNaN(parsedDate.getTime()) ? parsedDate.getTime() : 0,
 		};
 	});
 
@@ -77,14 +79,16 @@ export function getAllPosts(): PostMeta[] {
 		.map(({ slug, title, date, topic }) => ({ slug, title, date, topic }));
 }
 
-export async function getPostBySlug(slug: string): Promise<PostWithContent | null> {
-	const candidates = ['.mdx', '.md'];
+export async function getPostBySlug(
+	slug: string,
+): Promise<PostWithContent | null> {
+	const candidates = [".mdx", ".md"];
 	let raw: string | null = null;
 
 	for (const ext of candidates) {
 		const filePath = path.join(postsDir, `${slug}${ext}`);
 		if (fs.existsSync(filePath)) {
-			raw = fs.readFileSync(filePath, 'utf-8');
+			raw = fs.readFileSync(filePath, "utf-8");
 			break;
 		}
 	}
@@ -94,15 +98,16 @@ export async function getPostBySlug(slug: string): Promise<PostWithContent | nul
 	const { data, content: mdBody } = matter(raw);
 	const { content: cleanedMd, marginalia } = extractMarginalia(mdBody);
 
-	const result = await remark().use(remarkGfm).use(remarkHtml).process(cleanedMd);
+	const result = await remark()
+		.use(remarkGfm)
+		.use(remarkHtml)
+		.process(cleanedMd);
 
 	return {
 		slug,
 		title: data.title ?? slug,
-		date: data.date
-			? new Date(data.date).toISOString().slice(0, 10)
-			: '----',
-		topic: data.topic ?? '',
+		date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "----",
+		topic: data.topic ?? "",
 		marginalia,
 		contentHtml: result.toString(),
 	};
