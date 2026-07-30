@@ -1,0 +1,676 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "HGZOH",
+      "x": 0,
+      "y": 0,
+      "name": "Blog Post Page",
+      "clip": true,
+      "width": 1200,
+      "fill": "$bg-primary",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "M6pRPj",
+          "name": "Header Area",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            100,
+            40,
+            100
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "wR4Gq",
+              "name": "Category",
+              "fill": "$text-muted",
+              "content": "散文 ESSAY",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "500",
+              "letterSpacing": 12
+            },
+            {
+              "type": "text",
+              "id": "sInDb",
+              "name": "Title",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "夜读札记：关于时间的十二种写法",
+              "lineHeight": 1.25,
+              "fontFamily": "Playfair Display",
+              "fontSize": 48,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "tcC0O",
+              "name": "Meta Row",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "s1rcbT",
+                  "name": "Meta 作者",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JB22r",
+                      "name": "作者 Label",
+                      "fill": "$text-muted",
+                      "content": "作者",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "fYZfR",
+                      "name": "作者 Value",
+                      "fill": "$text-secondary",
+                      "content": "林清",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z8o8u",
+                  "name": "Meta 日期",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "m4grjW",
+                      "name": "日期 Label",
+                      "fill": "$text-muted",
+                      "content": "日期",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "whv6t",
+                      "name": "日期 Value",
+                      "fill": "$text-secondary",
+                      "content": "二〇二六年 七月",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L7lt7",
+                  "name": "Meta 阅读时间",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qvIiU",
+                      "name": "阅读时间 Label",
+                      "fill": "$text-muted",
+                      "content": "阅读时间",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "YW1gA",
+                      "name": "阅读时间 Value",
+                      "fill": "$text-secondary",
+                      "content": "约 18 分钟",
+                      "fontFamily": "Newsreader",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DzNAD",
+              "name": "Header Divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$divider"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "X0XCBQ",
+          "name": "Content Area",
+          "width": "fill_container",
+          "padding": [
+            0,
+            100,
+            60,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "JpJbn",
+              "name": "Body Column",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 32,
+              "padding": [
+                0,
+                60,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "T6SIHa",
+                  "name": "Paragraph 1",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "在中国古代文人的观念中，时间从来不是一个均质的物理量。它有时疾如奔马，有时缓若凝脂；有时重如磐石，有时轻若鸿毛。这种对时间的感性的理解，或许比任何精密的计时器都更贴近人类心灵的真实体验。",
+                  "lineHeight": 1.85,
+                  "fontFamily": "Newsreader",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "CHf4n",
+                  "name": "Paragraph 2",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "唐人李贺有诗云：「飞光飞光，劝尔一杯酒。吾不识青天高，黄地厚。唯见月寒日暖，来煎人寿。」这里的「煎」字用得极险。时间不是流逝，不是消耗，而是煎熬——一种缓慢的、持续的、无可逃脱的灼烧。这大约是中文里关于时间最为残酷的意象了。",
+                  "lineHeight": 1.85,
+                  "fontFamily": "Newsreader",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "fF0gH",
+                  "name": "Paragraph 3",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "宋人则要温和得多。苏东坡在《前赤壁赋》中写「逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也」，以水与月喻时间之流变与永恒。这是一种哲人的达观：承认流逝，却不为之所困。",
+                  "lineHeight": 1.85,
+                  "fontFamily": "Newsreader",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "arblN",
+                  "name": "Paragraph 4",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "明清之际，小品文的兴盛带来了另一种书写时间的方式。张岱在《陶庵梦忆》中反复描摹往昔的繁华，字里行间却处处透出时间的蚀刻。回忆本身就是时间的印记——不是因为记住了什么，而是因为遗忘了更多。",
+                  "lineHeight": 1.85,
+                  "fontFamily": "Newsreader",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "PRRK6",
+                  "name": "Paragraph 5",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "近代以来，线性时间观随西学东渐而入。铁路时刻表、工厂钟声、电报的即时性，开始重塑中国人对时间的感知。鲁迅在《朝花夕拾》中流露出的那种对童年时光的眷恋，恰恰是因为旧的时间秩序正在瓦解。",
+                  "lineHeight": 1.85,
+                  "fontFamily": "Newsreader",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "HzsgU",
+                  "name": "Paragraph 6",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "当代社会里，时间被无限细分和加速。我们拥有前所未有的计时精度，却失去了与时间相处的耐心。或许，重读古典文学中关于时间的文字，能够帮助我们重新建立一种更为健康的时间感——不是掌控时间，而是与之共生。",
+                  "lineHeight": 1.85,
+                  "fontFamily": "Newsreader",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gPVHG",
+              "name": "Vertical Divider",
+              "width": 1,
+              "height": 1300,
+              "fill": "$divider"
+            },
+            {
+              "type": "frame",
+              "id": "bPnrE",
+              "name": "Marginalia Column",
+              "width": 260,
+              "layout": "vertical",
+              "gap": 36,
+              "padding": [
+                0,
+                0,
+                0,
+                48
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kJsFt",
+                  "name": "Marginalia Note",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Fg1X9",
+                      "name": "Marginalia Marker",
+                      "fill": "$text-muted",
+                      "content": "§ 时间观",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "B1b1zb",
+                      "name": "Marginalia Text",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "中国人的时间观向来是循环的——四时轮回，六十甲子，周而复始。这与西方基督教的线性末世论时间形成根本对照。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Newsreader",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "q9aPYt",
+                  "name": "Marginalia Note",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gOF6m",
+                      "name": "Marginalia Marker",
+                      "fill": "$text-muted",
+                      "content": "※ 典故",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "R7Snf",
+                      "name": "Marginalia Text",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "李贺《苦昼短》全诗仅十二句，却创造了中文诗歌中最为密集的时间意象群。飞光、月寒日暖、来煎人寿——皆出自此篇。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Newsreader",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v384i",
+                  "name": "Marginalia Note",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "msar8",
+                      "name": "Marginalia Marker",
+                      "fill": "$text-muted",
+                      "content": "→ 参见",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "SpQ6K",
+                      "name": "Marginalia Text",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "苏轼《前赤壁赋》作于元丰五年（1082年），时年苏轼四十五岁，谪居黄州。此赋与《后赤壁赋》合为双璧。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Newsreader",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "USy4n",
+                  "name": "Marginalia Note",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wpfgd",
+                      "name": "Marginalia Marker",
+                      "fill": "$text-muted",
+                      "content": "✎ 笔记",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "EmbAV",
+                      "name": "Marginalia Text",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "张岱（1597—1689）晚年著《陶庵梦忆》，以百余篇小品追忆故国繁华。其时间意识堪称中国文学史上最精微者之一。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Newsreader",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fz2Jx",
+                  "name": "Marginalia Note",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KdMIs",
+                      "name": "Marginalia Marker",
+                      "fill": "$text-muted",
+                      "content": "⚡ 联想",
+                      "fontFamily": "IBM Plex Mono",
+                      "fontSize": 10,
+                      "fontWeight": "500",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "a1naAP",
+                      "name": "Marginalia Text",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "鲁迅《朝花夕拾》初版于1928年，收录十篇回忆散文。书名本身就是一个关于时间的精巧隐喻——早晨的花，傍晚才拾起。",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Newsreader",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "z4q9Dk",
+          "name": "Author Bio Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            60,
+            100,
+            80,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "cykL1",
+              "name": "Bio Top Rule",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$divider"
+            },
+            {
+              "type": "frame",
+              "id": "h4tXP",
+              "name": "Bio Card",
+              "width": "fill_container",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pGpAe",
+                  "name": "Avatar",
+                  "width": 64,
+                  "height": 64,
+                  "fill": "$accent",
+                  "cornerRadius": 32,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QS4E6",
+                      "name": "Avatar Initials",
+                      "fill": "$bg-primary",
+                      "content": "林",
+                      "fontFamily": "Playfair Display",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yUh7n",
+                  "name": "Bio Text Column",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NFDtG",
+                      "name": "Author Name",
+                      "fill": "$text-primary",
+                      "content": "林清",
+                      "fontFamily": "Playfair Display",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "E1AR0",
+                      "name": "Author Bio",
+                      "fill": "$text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "林清，生于江南，长于西北。现居北京，从事文学批评与文化研究。著有散文集《夜读札记》《时间的另一种写法》，编有《当代中文散文选》。坚信文字是抵抗时间侵蚀的唯一天然屏障。",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Newsreader",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vmqCJ",
+              "name": "Bio Bottom Rule",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$divider"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Rrqas",
+          "name": "Footer",
+          "width": "fill_container",
+          "gap": 32,
+          "padding": [
+            0,
+            100,
+            48,
+            100
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "v7xh5R",
+              "name": "Copyright",
+              "fill": "$text-muted",
+              "content": "© 二〇二六年 文学杂志",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 10,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "frame",
+              "id": "WTTeV",
+              "name": "Footer Nav",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "i40MdS",
+                  "name": "Footer Nav 关于",
+                  "fill": "$text-secondary",
+                  "content": "关于",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "EDiTA",
+                  "name": "Footer Nav 目录",
+                  "fill": "$text-secondary",
+                  "content": "目录",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "lM7NH",
+                  "name": "Footer Nav 投稿",
+                  "fill": "$text-secondary",
+                  "content": "投稿",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "FIjfO",
+                  "name": "Footer Nav 订阅",
+                  "fill": "$text-secondary",
+                  "content": "订阅",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent": {
+      "type": "color",
+      "value": "#A1887F"
+    },
+    "bg-primary": {
+      "type": "color",
+      "value": "#5D4037"
+    },
+    "divider": {
+      "type": "color",
+      "value": "#795548"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#8D6E63"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#FCFAF7"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#BCAAA4"
+    }
+  }
+}

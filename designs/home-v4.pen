@@ -1,0 +1,949 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "yrHCd",
+      "x": 0,
+      "y": 0,
+      "name": "Blog Home",
+      "clip": true,
+      "width": 780,
+      "fill": "#5D4037",
+      "layout": "vertical",
+      "padding": [
+        40,
+        48
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "siNBL",
+          "name": "Terminal Prompt",
+          "width": "fill_container",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "jBLA6",
+              "name": "Prompt Symbol",
+              "fill": "#A5D6A7",
+              "content": "dkj121@blog:~/posts$ ",
+              "lineHeight": 1.3,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "zkVtX",
+              "name": "Username",
+              "fill": "#FFCC80",
+              "content": "ls -la --sort=date",
+              "lineHeight": 1.3,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 15,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "kU3PH",
+              "name": "LS Command",
+              "fill": "#EFEBE9",
+              "content": "ls -la --sort=date",
+              "lineHeight": 1.3,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 15,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "u0oyEM",
+          "name": "Spacer 1",
+          "width": "fill_container",
+          "height": 16
+        },
+        {
+          "type": "frame",
+          "id": "JoFcJ",
+          "name": "Divider Top",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#8D6E63"
+        },
+        {
+          "type": "frame",
+          "id": "U02vU",
+          "name": "Spacer 2",
+          "width": "fill_container",
+          "height": 16
+        },
+        {
+          "type": "frame",
+          "id": "i2GchY",
+          "name": "Column Headers",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "EBlLw",
+              "name": "Header Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "c16a1",
+                  "name": "Header Date",
+                  "fill": "#A1887F",
+                  "content": "DATE",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "rr9c1",
+              "name": "Pipe H1",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "H5JKR",
+              "name": "Header Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jG8v9",
+                  "name": "Header Title",
+                  "fill": "#A1887F",
+                  "content": "TITLE",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "v3sr9h",
+              "name": "Pipe H2",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "dyS7P",
+              "name": "Header Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jNcHJ",
+                  "name": "Header Topic",
+                  "fill": "#A1887F",
+                  "content": "TOPIC",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WhJoK",
+          "name": "Divider Under Header",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#6D4C41"
+        },
+        {
+          "type": "frame",
+          "id": "g7tMS",
+          "name": "Row Building a Rust CLI Tool",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SjM81",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "s27qPJ",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-07-28",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "qAVQh",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "Ri1WD",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZfBej",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "Building a Rust CLI Tool",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "s7Tfj",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "KMsEd",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BxHvb",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "Rust",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JM1g6",
+          "name": "Row Design Systems at Scale",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "DFsqg",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w1TAA3",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-07-15",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "QPjfa",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "p4JPW4",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "b56MC",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "Design Systems at Scale",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "b0tKWv",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "kJfu1",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mua0s",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "Design",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JU0so",
+          "name": "Row Understanding CRDTs",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "D3OuG6",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "EjGD7",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-06-30",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "yBK3g",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "w5s7o6",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "G6tSbp",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "Understanding CRDTs",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "rfyl4",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "Gntqg",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vawl0",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "Distributed",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Q4FGnX",
+          "name": "Row Modern CSS Layout Patterns",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "L8aDd",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "F8VGQ",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-06-12",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Wr2AX",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "fnqqe",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "oCBbx",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "Modern CSS Layout Patterns",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "m7DHpE",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "dMnBB",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uIyF8",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "Frontend",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZwbS4",
+          "name": "Row Go Concurrency Patterns",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "rtuk3",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iljDS",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-05-25",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "XIu4g",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "xgKqw",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "By4gN",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "Go Concurrency Patterns",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "YzVmh",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "U8dxXt",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RVz0g",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "Go",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "M2q0C",
+          "name": "Row Terminal Emulators Compared",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Pruld",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "aZhVc",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-05-08",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "jGsF8",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "mOKmS",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mnWHw",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "Terminal Emulators Compared",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "DAvga",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "Df2VB",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IUAod",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "Tools",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "inQFR",
+          "name": "Row WebAssembly in Practice",
+          "width": "fill_container",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "OfrUc",
+              "name": "Date Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "brn9h",
+                  "name": "Date",
+                  "fill": "#BCAAA4",
+                  "content": "2024-04-20",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "NLpQW",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "fuBv0",
+              "name": "Title Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "x3JpD",
+                  "name": "Title",
+                  "fill": "#EFEBE9",
+                  "content": "WebAssembly in Practice",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "X8Li1",
+              "name": "Pipe",
+              "fill": "#6D4C41",
+              "content": "│",
+              "lineHeight": 1.2,
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "qdGFz",
+              "name": "Topic Cell",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "udq0T",
+                  "name": "Topic",
+                  "fill": "#FFCC80",
+                  "content": "WASM",
+                  "lineHeight": 1.2,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "R5qzN",
+          "name": "Spacer Before Author",
+          "width": "fill_container",
+          "height": 24
+        },
+        {
+          "type": "frame",
+          "id": "Rx3Ku",
+          "name": "Divider Bottom",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#8D6E63"
+        },
+        {
+          "type": "frame",
+          "id": "r5zKa",
+          "name": "Spacer After Divider",
+          "width": "fill_container",
+          "height": 20
+        },
+        {
+          "type": "frame",
+          "id": "Mw1Xt",
+          "name": "Author Card",
+          "width": "fill_container",
+          "fill": "#4E342E",
+          "gap": 20,
+          "padding": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Jreua",
+              "name": "Avatar",
+              "width": 56,
+              "height": 56,
+              "fill": "#8D6E63",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yWtCS",
+                  "name": "Avatar Initials",
+                  "fill": "#EFEBE9",
+                  "content": "DK",
+                  "lineHeight": 1,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CHZ0Y",
+              "name": "Author Info",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "idDmz",
+                  "name": "Author Name",
+                  "fill": "#EFEBE9",
+                  "content": "dkj121",
+                  "lineHeight": 1.3,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "l4PxLA",
+                  "name": "Author Bio",
+                  "fill": "#BCAAA4",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Software engineer writing about Rust, distributed systems, and terminal tools. Building things that live in the command line.",
+                  "lineHeight": 1.4,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xHyTZ",
+              "name": "Author Links",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "NpKO4",
+                  "name": "Link GH",
+                  "fill": "#FFCC80",
+                  "content": "github",
+                  "lineHeight": 1.3,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aiOoF",
+                  "name": "Link TW",
+                  "fill": "#FFCC80",
+                  "content": "twitter",
+                  "lineHeight": 1.3,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "pIwBt",
+                  "name": "Link RSS",
+                  "fill": "#FFCC80",
+                  "content": "rss",
+                  "lineHeight": 1.3,
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "O8Q1Z1",
+          "name": "Spacer Bottom",
+          "width": "fill_container",
+          "height": 8
+        },
+        {
+          "type": "text",
+          "id": "a7MUo",
+          "name": "Footer",
+          "fill": "#6D4C41",
+          "content": "~ $ exit",
+          "lineHeight": 1.3,
+          "fontFamily": "JetBrains Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    }
+  ]
+}
