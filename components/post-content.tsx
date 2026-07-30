@@ -30,13 +30,14 @@ export function PostContent({
 						{title}
 					</h1>
 
-					{/* Metadata */}
+					{/* Metadata and topic */}
 					<p className="mb-8 text-sm font-[var(--font-body)] text-[var(--color-text-muted)]">
 						{new Date(date).toLocaleDateString("zh-CN", {
 							year: "numeric",
 							month: "long",
 							day: "numeric",
 						})}
+						{` • ${topic}`}
 					</p>
 
 					{/* Divider */}
