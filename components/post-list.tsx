@@ -75,6 +75,7 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 			{/* CLI prompt with interactive input */}
 			<div className="mb-2 flex items-center gap-2">
 				<span className="prompt whitespace-nowrap">dkj121@blog:~/posts$</span>
+				dkj121-posts
 				<input
 					ref={inputRef}
 					type="text"
