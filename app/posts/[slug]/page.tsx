@@ -21,6 +21,6 @@ export default async function PostPage({ params }: Props) {
 
 export function generateStaticParams() {
 	return getAllPosts().map((post) => ({
-		slug: post.slug,
+		slug: encodeURIComponent(post.slug),
 	}));
 }

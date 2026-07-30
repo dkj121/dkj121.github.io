@@ -50,25 +50,31 @@ export function getAllPosts(): PostMeta[] {
 export async function getPostBySlug(
 	slug: string,
 ): Promise<PostWithContent | null> {
+	const decoded = decodeURIComponent(slug);
 	const candidates = [".mdx", ".md"];
 	let raw: string | null = null;
 
 	for (const ext of candidates) {
-		const filePath = path.join(postsDir, `${slug}${ext}`);
+		const filePath = path.join(postsDir, `${decoded}${ext}`);
 		if (fs.existsSync(filePath)) {
 			raw = fs.readFileSync(filePath, "utf-8");
 			break;
 		}
 	}
 
-	if (!raw) return null;
+	if (!raw) {
+		console.error(
+			`[getPostBySlug] FAIL — slug="${slug}", decoded="${decoded}"`,
+		);
+		return null;
+	}
 
 	const { data, content: mdBody } = matter(raw);
 	const result = await remark().use(remarkGfm).use(remarkHtml).process(mdBody);
 
 	return {
-		slug,
-		title: data.title ?? slug,
+		slug: decoded,
+		title: data.title ?? decoded,
 		date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "----",
 		topic: data.topic ?? "",
 		contentHtml: result.toString(),
