@@ -3,7 +3,9 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeHighlight from "rehype-highlight";
+import rehypeStringify from "rehype-stringify";
 
 const postsDir = path.join(process.cwd(), "content/posts");
 
@@ -70,7 +72,12 @@ export async function getPostBySlug(
 	}
 
 	const { data, content: mdBody } = matter(raw);
-	const result = await remark().use(remarkGfm).use(remarkHtml).process(mdBody);
+	const result = await remark()
+		.use(remarkGfm)
+		.use(remarkRehype)
+		.use(rehypeHighlight)
+		.use(rehypeStringify)
+		.process(mdBody);
 
 	return {
 		slug: decoded,
