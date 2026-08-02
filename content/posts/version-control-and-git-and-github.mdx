@@ -47,27 +47,27 @@ topic: [misc, git, github]
 
 但是对于纯命令行形式的 Git 使用难免会产生混乱，毕竟你无法很直观的观察到当前的项目是否存在问题。而对于大多数现代的 IDE 来说，他们都提供了 GUI （图形化界面）来辅助开发者进行版本控制。下面以 VS Code 为例展开简单概述。
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjFiODU1NzIwMjljN2M3NDllN2IxOGNhNGUxNmUxYTVfNDQ1NTcxOTBkYWI1Y2EzMzZkZGRkNzIwZDVjYTU0OGVfSUQ6NzY2NTkzNDQzNzg4MTMxODU5NF8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image1](../assets/version-control-and-git-and-github/image1.png)
 
 这是一份 [2026SASTCsharp组免试题喵](https://njupt-sast.feishu.cn/wiki/NY9sw7hOiiuR9MkTZLmcaAYjnBd) 的部分项目，注意到对于项目左栏的文件视图中存在绿色和黄色标识的文件，分别表示新增和修改，而对于删除的文件，则以红色标识表示.
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDU5YjM5ZjU2YTQyZGU4MGFhN2Q1NGUwMjk1YmZkOTVfOTc3N2I5NDE0Y2UyYzcxMDA2ZDUxYzg0NmE5NWQ0NTdfSUQ6NzY2NTkzNTIyNzc5NzY4NzI0Nl8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image2](../assets/version-control-and-git-and-github/image2.png)
 
 跳转到版本控制界面，可以看到做出了那些修改，以及历史修改。单击某个文件，也可以看到修改了那些内容。
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjI4ZTdkZTg3ZmMzOTY2ZTQ1Mzk1YTZlYWY2NGI3MTNfOGU0NjI5NWUxMTVhZjEyZDdiYjQ5ZjVjNzBmOWJhNDVfSUQ6NzY2NTkzNjI2NDEyMTk5NDQ2MF8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image3](../assets/version-control-and-git-and-github/image3.png)
 
 同时注意到这里存在一处 `git merge` 操作，这里合并了远程的 README\.md 修改到本地。对于分支，可以通过命令行或者鼠标右键目标节点来创建、删除，至于合并，vscode 本身自带的 Git 控制并未提供相关操作，但是可以通过下图通过 Ctrl\+Shift\+P（Windows）搜索 Git Merge 命令来辅助实现
 
 ~~（其实一般来说不应该这样做，但是这个项目只有这一处分支能说了）~~
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWFlMWU5YzQ5MmMxZGUxOTUyNzA1ZDA0ZGVjN2FlMzNfYzFhNzFlMTNjYWI5ZGIzZWQwZDEyMzI0NjhjMTA0NjFfSUQ6NzY2NTk0MDUzODYzNzg2Mzg5Nl8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image4](../assets/version-control-and-git-and-github/image4.png)
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTkwNjU0NjhhODA3ODRjODkzNTExZmYyYWEyNWFiNWJfZTU2MWIyNzMyOTBjOWZhMDY0MGYxMTM5ZDY5OTlkNmJfSUQ6NzY2NTk0MzMzMDkzMjY4OTg5Nl8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image5](../assets/version-control-and-git-and-github/image5.png)
 
 以上给出之前给出的几个常用命令的等价按钮（更多方便内容可以通过下载 GitLen 插件实现）
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTExNDc2OTI0Y2RjNTcwY2UwODc3OGU5ZjY3YmY2MzBfYzg0ZWYyNmIwZWFkM2VkNTZkZGExOWQ2ZDE2ZmE5NWFfSUQ6NzY2NTkzNjczNTMwNTk3NjgxNV8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image6](../assets/version-control-and-git-and-github/image6.png)
 
 ## 三、Github 初识
 
@@ -79,13 +79,13 @@ topic: [misc, git, github]
 > 对于大多数普通开发者而言，Github 已经足够了，但是对于保密性极高的大厂来说，他们需要自己的服务器来托管代码，详情请参考 [Pro Git](https://git-scm.com/book/zh/v2) 中有关
 > 4\. [服务器上的 Git](https://git-scm.com/book/zh/v2/%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8a%e7%9a%84-Git-%e5%8d%8f%e8%ae%ae)
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTU2NmYyMjA1MGFjNzk4ZjJmNTcyZjI5ODA0NzhjNmNfYzQ4MTc0MTEwNWRiNDA1ZThlMWUxMzEwNjlhNDY4OWFfSUQ6NzY2NTkzOTQxOTYyMjM0NTkzNV8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image7](../assets/version-control-and-git-and-github/image7.png)
 
 上图展示了一个名为 [runner](https://github.com/dkj121/runner) 的~~半死不活~~项目的主界面，下面就此项目对版本控制进行进一步导入。如下图，对于每一个新建并推送到远程的分支，我们都可以提交一个 PR （[如何创建 PR](https://github.com/xingkuangye/github-pr-tutorial)），通过创作者/贡献者审查的分支，将会被他们合并到目标分支上
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTkzNzExOTc4ZTE0OWRhZmEwMzUwYTRjMTQ5ZWJjZjBfNmJhZGJjMTA1OTRhMjRiZDUyMGZjYTgxNzg4ZDVmM2NfSUQ6NzY2NTkzOTgyMjI3NTcxMDIyMV8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image8](../assets/version-control-and-git-and-github/image8.png)
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGQyNThjNTVlMWYwMjBlZDNhYTZiNjRjODM5MTY3YjRfOWFjMDZjZDUyOGEwMWI3Y2NmYTMyOTljZmYyZDI4MTdfSUQ6NzY2NTk0NDk1ODA2MjUxMzQzN18xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image9](../assets/version-control-and-git-and-github/image9.png)
 
 对于单个项目，指望所有人同时编码某一个分支，显然容易产生版本冲突，所以我们经常引入了一套 Git 工作流来协调开发者之间的工作。
 
@@ -97,7 +97,7 @@ topic: [misc, git, github]
 
 ### 1、Explore
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjM5YzVmMTljMzBjOThlZDEwMThkNWY5ZjFjZWRkOGZfNzEwODZjZTM3ZDlhYzNkM2M0N2MwMzYwZjcwZmY2NTFfSUQ6NzY2NTk5NjExNDE3NjQ0NTY4MF8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image10](../assets/version-control-and-git-and-github/image10.png)
 
 > 把 Github 当 B站刷
 
@@ -105,19 +105,19 @@ Explore 区域每天都会展示当天的热门项目，在这里，既有 AI �
 
 ### 2、[Github Pages](https://docs.github.com/en/pages)
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTlhNDI0YzliNmE4YTU4NzhiMjJiMjIxYjRhYzgwNzNfZTYyNTAzZTZiMjIzMzNiMjdjYjE5NWYwODZkMTUyYzZfSUQ6NzY2NTk5NzU4NDYzNjk3MjI1NF8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image11](../assets/version-control-and-git-and-github/image11.png)
 
 Github 为每一位用户都提供了便捷的 Github Pages 部署方案，任何叫做 \<username\>\.github\.io 的仓库一旦创建，Github 都会为他直接提供好一套部署服务，适合作为新手零成本搭建 blog
 
 ### 3、[Github Actions](https://docs.github.com/en/actions)
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2JjNDg3NWEyYTcxYWE3OTlmMzZjMjcwMGUyZGIzMTlfNjI4YWU2YmJmYjUxYmVkZWQyZmJhZTQ2ZWI3NzI4YjFfSUQ6NzY2NTk5ODgxNzI3MjMwMjgxNF8xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image12](../assets/version-control-and-git-and-github/image12.png)
 
 作为托管平台，Github 自然也提供了很多用来辅助托管的功能，Github Actions 提供了一套包含 CI/CD 的成熟体系，每次 merge 、每次 PR 甚至每次 commit，都可以在这里找到管理方案
 
 ### 4、学生认证
 
-![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTYyNGM5NGQwZTRkOTkyNmRlMmRmMzMxYzZkMmI4NWJfZjYzZDQ4YTdhZmFiZDUxOWZhNjdlN2YyNjQ0NjczNjFfSUQ6NzY2NTk5ODc3Mjc0Njc1MDkyN18xNzg1Mzg1NTQ4OjE3ODU0NzE5NDhfVjM)
+![image13](../assets/version-control-and-git-and-github/image13.png)
 
 很可惜的是，自从 2025 年末左右的 AI 大爆发，以前被疯狂薅羊毛的学生认证也几乎完全封闭了 GitHub Copilot 的使用（一句话 50%）现在除了高度嵌入 Github，别的地方几乎一事无成（
 
