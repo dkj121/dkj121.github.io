@@ -48,9 +48,10 @@ lib/posts.ts            MDX processing (gray-matter + remark)
 ## Commands
 
 ```bash
-pnpm dev       # Start dev server
-pnpm build     # Build static export to out/
-pnpm fmt       # Format with Prettier
+pnpm run dev       # Start dev server
+pnpm run build     # Build static export to out/
+pnpm run fmt       # Format with Prettier
+pnpm run lint      # Lint code with Eslint
 ```
 
 ## Content Format

@@ -13,11 +13,21 @@ export interface PostMeta {
 	slug: string;
 	title: string;
 	date: string;
-	topic: string;
+	topic: string[];
 }
 
 export interface PostWithContent extends PostMeta {
 	contentHtml: string;
+}
+
+function parseTopic(topic: unknown): string[] {
+	if (Array.isArray(topic)) {
+		return topic.map((t) => String(t).trim().toLowerCase() + " ");
+	} else if (typeof topic === "string") {
+		return [topic.trim().toLowerCase() + " "];
+	} else {
+		return [];
+	}
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -31,6 +41,7 @@ export function getAllPosts(): PostMeta[] {
 		const raw = fs.readFileSync(path.join(postsDir, file), "utf-8");
 		const { data } = matter(raw);
 		const parsedDate = data.date ? new Date(data.date) : null;
+		const parsedTopic = parseTopic(data.topic);
 		return {
 			slug: file.replace(/\.(mdx|md)$/, ""),
 			title: data.title ?? file,
@@ -38,7 +49,7 @@ export function getAllPosts(): PostMeta[] {
 				parsedDate && !isNaN(parsedDate.getTime())
 					? parsedDate.toISOString().slice(0, 10)
 					: "----",
-			topic: data.topic ?? "",
+			topic: parsedTopic,
 			_sortDate:
 				parsedDate && !isNaN(parsedDate.getTime()) ? parsedDate.getTime() : 0,
 		};
@@ -83,7 +94,7 @@ export async function getPostBySlug(
 		slug: decoded,
 		title: data.title ?? decoded,
 		date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "----",
-		topic: data.topic ?? "",
+		topic: parseTopic(data.topic),
 		contentHtml: result.toString(),
 	};
 }

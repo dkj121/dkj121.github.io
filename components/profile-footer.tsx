@@ -11,36 +11,68 @@ export function ProfileFooter() {
 						dkj121
 					</p>
 					<p className="text-sm text-[var(--color-text-muted)]">
-						这里是 dkj121，图片里的是家里养过的最后一只家猫（后因偷吃小兔而被流放），目前在
-						<Link href="https://www.njupt.edu.cn" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+						这里是
+						dkj121，图片里的是家里养过的最后一只家猫（后因偷吃小兔而被流放），目前在
+						<Link
+							href="https://www.njupt.edu.cn"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-[var(--color-accent)] hover:underline"
+						>
 							南京邮电大学
 						</Link>
 						就读，就任
-						<Link href="https://sast.fun/" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+						<Link
+							href="https://sast.fun/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-[var(--color-accent)] hover:underline"
+						>
 							SAST 软研部 C# Group
 						</Link>
 						组第35届组长
 					</p>
 					<p className="text-sm text-[var(--color-text-muted)]">
 						有关这篇 blog 的更多内容，请参考
-						<Link href="https://github.com/dkj121/dkj121.github.io" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+						<Link
+							href="https://github.com/dkj121/dkj121.github.io"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-[var(--color-accent)] hover:underline"
+						>
 							这个仓库
 						</Link>
 					</p>
 					<p className="text-sm text-[var(--color-text-muted)]">
-						Here is dkj121, the last cat raised at home (later exiled for stealing and eating a rabbit). Currently studying at
-						<Link href="https://www.njupt.edu.cn" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+						Here is dkj121, the last cat raised at home (later exiled for
+						stealing and eating a rabbit). Currently studying at
+						<Link
+							href="https://www.njupt.edu.cn"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-[var(--color-accent)] hover:underline"
+						>
 							Nanjing University of Posts and Telecommunications
 						</Link>
 						, serving as the 35th leader of the C# Group in the
-						<Link href="https://sast.fun/" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+						<Link
+							href="https://sast.fun/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-[var(--color-accent)] hover:underline"
+						>
 							SAST Software Research Department
 						</Link>
 						.
 					</p>
 					<p className="text-sm text-[var(--color-text-muted)]">
 						For more information about this blog, please refer to
-						<Link href="https://github.com/dkj121/dkj121.github.io" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+						<Link
+							href="https://github.com/dkj121/dkj121.github.io"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-[var(--color-accent)] hover:underline"
+						>
 							the repository
 						</Link>
 					</p>

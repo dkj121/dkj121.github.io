@@ -68,7 +68,13 @@ body {
 	border: 0;
 }
 
-.post-article .prose :where(pre code.hljs::selection, pre code.hljs *::selection, :not(pre) > code::selection) {
+.post-article
+	.prose
+	:where(
+		pre code.hljs::selection,
+		pre code.hljs *::selection,
+		:not(pre) > code::selection
+	) {
 	background: rgba(255, 204, 128, 0.24);
 	color: var(--color-text);
 }
@@ -123,29 +129,74 @@ body {
 	font-style: italic;
 }
 
-.post-article .prose :where(.hljs-keyword, .hljs-selector-tag, .hljs-meta .hljs-keyword, .hljs-doctag, .hljs-built_in, .hljs-type, .hljs-class, .hljs-function) {
+.post-article
+	.prose
+	:where(
+		.hljs-keyword,
+		.hljs-selector-tag,
+		.hljs-meta .hljs-keyword,
+		.hljs-doctag,
+		.hljs-built_in,
+		.hljs-type,
+		.hljs-class,
+		.hljs-function
+	) {
 	color: #ffcc80;
 	font-weight: 600;
 }
 
-.post-article .prose :where(.hljs-string, .hljs-attr, .hljs-symbol, .hljs-bullet, .hljs-regexp, .hljs-template-tag, .hljs-template-variable, .hljs-meta-string) {
+.post-article
+	.prose
+	:where(
+		.hljs-string,
+		.hljs-attr,
+		.hljs-symbol,
+		.hljs-bullet,
+		.hljs-regexp,
+		.hljs-template-tag,
+		.hljs-template-variable,
+		.hljs-meta-string
+	) {
 	color: #a5d6a7;
 }
 
-.post-article .prose :where(.hljs-number, .hljs-literal, .hljs-variable, .hljs-link, .hljs-meta, .hljs-built_in .hljs-title) {
+.post-article
+	.prose
+	:where(
+		.hljs-number,
+		.hljs-literal,
+		.hljs-variable,
+		.hljs-link,
+		.hljs-meta,
+		.hljs-built_in .hljs-title
+	) {
 	color: #90caf9;
 }
 
-.post-article .prose :where(.hljs-title, .hljs-section, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-title.class_, .hljs-title.function_) {
+.post-article
+	.prose
+	:where(
+		.hljs-title,
+		.hljs-section,
+		.hljs-name,
+		.hljs-selector-id,
+		.hljs-selector-class,
+		.hljs-title.class_,
+		.hljs-title.function_
+	) {
 	color: #ffd54f;
 	font-weight: 600;
 }
 
-.post-article .prose :where(.hljs-attr, .hljs-property, .hljs-attribute, .hljs-template-variable) {
+.post-article
+	.prose
+	:where(.hljs-attr, .hljs-property, .hljs-attribute, .hljs-template-variable) {
 	color: #81d4fa;
 }
 
-.post-article .prose :where(.hljs-tag, .hljs-variable.language_, .hljs-punctuation, .hljs-subst) {
+.post-article
+	.prose
+	:where(.hljs-tag, .hljs-variable.language_, .hljs-punctuation, .hljs-subst) {
 	color: #80cbc4;
 }
 
