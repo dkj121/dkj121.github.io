@@ -6,8 +6,47 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
+import { visit } from "unist-util-visit";
+import type { Root, Image } from "mdast";
 
 const postsDir = path.join(process.cwd(), "content/posts");
+const assetsDir = path.join(process.cwd(), "content/assets");
+const publicAssetsDir = path.join(process.cwd(), "public/assets");
+
+function copyAssets() {
+	if (!fs.existsSync(assetsDir)) return;
+	if (!fs.existsSync(publicAssetsDir)) {
+		fs.mkdirSync(publicAssetsDir, { recursive: true });
+	}
+
+	const entries = fs.readdirSync(assetsDir, { withFileTypes: true });
+	for (const entry of entries) {
+		const srcPath = path.join(assetsDir, entry.name);
+		const destPath = path.join(publicAssetsDir, entry.name);
+
+		if (entry.isDirectory()) {
+			if (!fs.existsSync(destPath)) {
+				fs.mkdirSync(destPath, { recursive: true });
+			}
+			const files = fs.readdirSync(srcPath);
+			for (const file of files) {
+				fs.copyFileSync(path.join(srcPath, file), path.join(destPath, file));
+			}
+		} else {
+			fs.copyFileSync(srcPath, destPath);
+		}
+	}
+}
+
+function remarkTransformImagePaths() {
+	return (tree: Root) => {
+		visit(tree, "image", (node: Image) => {
+			if (node.url && node.url.startsWith("../assets/")) {
+				node.url = node.url.replace("../assets/", "/assets/");
+			}
+		});
+	};
+}
 
 export interface PostMeta {
 	slug: string;
@@ -32,6 +71,8 @@ function parseTopic(topic: unknown): string {
 
 export function getAllPosts(): PostMeta[] {
 	if (!fs.existsSync(postsDir)) return [];
+
+	copyAssets();
 
 	const files = fs
 		.readdirSync(postsDir)
@@ -85,6 +126,7 @@ export async function getPostBySlug(
 	const { data, content: mdBody } = matter(raw);
 	const result = await remark()
 		.use(remarkGfm)
+		.use(remarkTransformImagePaths)
 		.use(remarkRehype)
 		.use(rehypeHighlight)
 		.use(rehypeStringify)
