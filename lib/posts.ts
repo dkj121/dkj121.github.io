@@ -13,20 +13,20 @@ export interface PostMeta {
 	slug: string;
 	title: string;
 	date: string;
-	topic: string[];
+	topic: string;
 }
 
 export interface PostWithContent extends PostMeta {
 	contentHtml: string;
 }
 
-function parseTopic(topic: unknown): string[] {
+function parseTopic(topic: unknown): string {
 	if (Array.isArray(topic)) {
-		return topic.map((t) => String(t).trim().toLowerCase() + " ");
+		return topic.map((t) => String(t).trim().toLowerCase()).join(" ");
 	} else if (typeof topic === "string") {
-		return [topic.trim().toLowerCase() + " "];
+		return topic.trim().toLowerCase();
 	} else {
-		return [];
+		return "";
 	}
 }
 
