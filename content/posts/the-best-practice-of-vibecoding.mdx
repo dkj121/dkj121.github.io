@@ -4,15 +4,15 @@ date: 2026-06-23
 topic: [ai, engineering, programming]
 ---
 
-## 何为最佳实践
+## 一、何为最佳实践
 
 翻阅大量技术官网、技术博客、技术论坛，甚至是技术书籍，他们都会给出一些最佳实践的遵循。
 
-## 何为 vibecoding
+## 二、何为 vibecoding
 
 > vibe 情景式 coding 编码
 
-自从[OpenAI](https://openai.com/) 发布了 ChatGPT 之后，AI 编程助手的概念就被广泛传播开来。
+自从[OpenAI](https://openai.com/) 发布了 [Codex](https://openai.com/zh-Hans-CN/codex/) 之后，AI 编程助手的概念就被广泛传播开来。
 
 > 谁不想往死里薅微软的羊毛呢
 
@@ -20,9 +20,9 @@ topic: [ai, engineering, programming]
 
 至于 2026 年初，大量的专精 coding 的 agent 也被开发出来，逐步进入大众实现，以至于普通人也能轻而易举的实现自己的一些小工具。
 
-## 工具推荐
+## 三、工具推荐
 
-> 大多是我自己在使用的工具，当然也有一些是我觉得不错的工具，仅供参考。
+> 大多是我自己在使用的工具，仅供参考。
 
 ### 1.[Visual Studio Code](https://code.visualstudio.com/)
 
@@ -30,7 +30,7 @@ topic: [ai, engineering, programming]
 
 它的插件生态，对于大多数编程语言，它都提供了非常完善的插件支持，甚至是对于一些冷门的编程语言，也有一些社区开发的插件。
 
-### 2.[Codex(现 ChatGPT)](https://openai.com/zh-Hans-CN/codex/)
+### 2.[Codex](https://openai.com/zh-Hans-CN/codex/)
 
 作为现代 AI 编程的鼻祖，Codex 的出现让编程变得更加简单。无论是对于初学者还是对于专业开发者，Codex 都提供了非常强大的支持。
 
@@ -63,7 +63,7 @@ topic: [ai, engineering, programming]
 
 代码 -> db，同时提供了 skill、hooks、mcp 减少 ai 反复确认项目架构的过程（实际上更推荐直接启用 agent 内部的指定文件功能）
 
-## 一些 extension
+## 四、一些 extension
 
 > 除了以下内容 claude code 官方也提供了大量[优秀的拓展](https://github.com/anthropics/claude-plugins-official)、[skills](https://github.com/anthropics/skills)
 
@@ -80,7 +80,7 @@ topic: [ai, engineering, programming]
 
 > 尽管当前大多数 ai 能够自主的调用大部分拓展，但是这里依然还是建议开发者在开发过程中主动声明已有的拓展，以便于 ai 进行更好的调用。
 
-## Quickly Start (normal)
+## 五、Quickly Start (normal)
 
 1. 对于大型项目，建议使用 `/plan /superpowers:brainstorming /superpowers:writing-plans` 来进行项目的整体规划，尽可能详尽的阐述项目架构、技术实现、项目内容。
 2. 不要一次性输入多个可能改变 agent 角色的 `/prompt`，尽可能的将每一个 prompt 的内容拆分开来或者使用 `/superpowers:dispatching-parallel-agents` 拆分没有关联的任务，避免 ai 过度记忆导致的混乱（对于适用于一组工作流的可以尝试，但是依旧尽量避免）
@@ -126,7 +126,7 @@ Step1 --> Step2 --> Finish1
 
 ```
 
-## 总结
+## 六、总结
 
 > 有了约束，速度才不会下降，架构才不会漂移。 ———— OpenAI
 
