@@ -7,7 +7,7 @@ import remarkRehype from "remark-rehype";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import { visit } from "unist-util-visit";
-import type { Root, Image } from "mdast";
+import type { Root, Image, Code } from "mdast";
 
 const postsDir = path.join(process.cwd(), "content/posts");
 const assetsDir = path.join(process.cwd(), "content/assets");
@@ -43,6 +43,21 @@ function remarkTransformImagePaths() {
 		visit(tree, "image", (node: Image) => {
 			if (node.url && node.url.startsWith("../assets/")) {
 				node.url = node.url.replace("../assets/", "/assets/");
+			}
+		});
+	};
+}
+
+function remarkMermaid() {
+	return (tree: Root) => {
+		visit(tree, "code", (node: Code) => {
+			if (node.lang === "mermaid") {
+				const data = node.data || (node.data = {});
+				data.hName = "div";
+				data.hProperties = {
+					className: ["mermaid"],
+				};
+				data.hChildren = [{ type: "text", value: node.value }];
 			}
 		});
 	};
@@ -127,6 +142,7 @@ export async function getPostBySlug(
 	const result = await remark()
 		.use(remarkGfm)
 		.use(remarkTransformImagePaths)
+		.use(remarkMermaid)
 		.use(remarkRehype)
 		.use(rehypeHighlight)
 		.use(rehypeStringify)

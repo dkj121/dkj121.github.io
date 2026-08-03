@@ -265,3 +265,55 @@ body {
 .terminal-menu input::placeholder {
 	color: var(--color-divider);
 }
+
+/* ── Mermaid diagrams ── */
+.post-article .prose :where(.mermaid) {
+	background: var(--color-card);
+	border-radius: 0.75rem;
+	padding: 3rem;
+	margin: 2rem auto;
+	width: 100%;
+	overflow: visible;
+}
+
+.post-article .prose :where(.mermaid svg) {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+	filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.post-article .prose :where(.mermaid .nodeLabel) {
+	font-family: var(--font-body);
+	font-size: 2.25rem;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.post-article .prose :where(.mermaid .edgeLabel) {
+	font-family: var(--font-body);
+	font-size: 2rem;
+	font-weight: 500;
+	background: var(--color-card);
+	border-radius: 0.25rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.post-article .prose :where(.mermaid .cluster rect) {
+	stroke-width: 1.5px;
+}
+
+.post-article
+	.prose
+	:where(.mermaid .node rect, .mermaid .node circle, .mermaid .node polygon) {
+	stroke-width: 1.5px;
+}
+
+.post-article .prose :where(.mermaid path.flowchart-link) {
+	stroke-width: 1.5px;
+}
+
+.post-article .prose :where(.mermaid marker) {
+	stroke-width: 1.5px;
+}

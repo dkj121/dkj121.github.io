@@ -1,4 +1,6 @@
-import { type ReactNode } from "react";
+"use client";
+
+import { type ReactNode, useEffect } from "react";
 
 interface PostContentProps {
 	title: string;
@@ -13,6 +15,50 @@ export function PostContent({
 	topic,
 	children,
 }: PostContentProps) {
+	useEffect(() => {
+		const initMermaid = async () => {
+			const mermaid = (await import("mermaid")).default;
+			mermaid.initialize({
+				startOnLoad: true,
+				theme: "base",
+				themeVariables: {
+					primaryColor: "#4e342e",
+					primaryTextColor: "#fcfaf7",
+					primaryBorderColor: "#ffcc80",
+					lineColor: "#ffcc80",
+					secondaryColor: "#5d4037",
+					tertiaryColor: "#3e2723",
+					background: "#5d4037",
+					mainBkg: "#4e342e",
+					secondBkg: "#5d4037",
+					tertiaryBkg: "#3e2723",
+					nodeBorder: "#ffcc80",
+					clusterBkg: "#5d4037",
+					clusterBorder: "#795548",
+					titleColor: "#fcfaf7",
+					edgeLabelBackground: "#5d4037",
+					nodeTextColor: "#fcfaf7",
+					fontSize: "18px",
+					fontFamily:
+						'"Bahnschrift Light", "Bahnschrift", "Segoe UI", "Microsoft YaHei UI", "Noto Sans SC", sans-serif',
+				},
+				flowchart: {
+					htmlLabels: true,
+					nodeSpacing: 60,
+					rankSpacing: 80,
+					curve: "basis",
+					padding: 20,
+					wrappingWidth: 500,
+				},
+			});
+			mermaid.run({
+				querySelector: ".mermaid",
+			});
+		};
+
+		initMermaid();
+	}, []);
+
 	return (
 		<article className="post-article">
 			{/* Category label */}

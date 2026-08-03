@@ -1,0 +1,350 @@
+{
+	"schemaVersion": 2,
+	"generatedAt": "2026-08-03T06:15:00.000Z",
+	"title": "Design System: dkj121.github.io",
+	"extensions": {
+		"colorMeta": {
+			"timber-brown": {
+				"role": "neutral",
+				"displayName": "Timber Brown",
+				"canonical": "#5d4037",
+				"tonalRamp": [
+					"#1a0f0d",
+					"#2d1814",
+					"#3e2723",
+					"#4e342e",
+					"#5d4037",
+					"#795548",
+					"#8d6e63",
+					"#a1887f",
+					"#bcaaa4"
+				]
+			},
+			"dark-timber": {
+				"role": "neutral",
+				"displayName": "Dark Timber",
+				"canonical": "#4e342e",
+				"tonalRamp": [
+					"#1a0f0d",
+					"#2d1814",
+					"#3e2723",
+					"#4e342e",
+					"#5d4037",
+					"#6d4c41",
+					"#795548",
+					"#8d6e63",
+					"#a1887f"
+				]
+			},
+			"parchment": {
+				"role": "neutral",
+				"displayName": "Parchment",
+				"canonical": "#fcfaf7",
+				"tonalRamp": [
+					"#5d4037",
+					"#795548",
+					"#8d6e63",
+					"#a1887f",
+					"#bcaaa4",
+					"#d7ccc8",
+					"#efebe9",
+					"#f5f5f5",
+					"#fcfaf7"
+				]
+			},
+			"ink": {
+				"role": "neutral",
+				"displayName": "Ink",
+				"canonical": "#281901",
+				"tonalRamp": [
+					"#0a0500",
+					"#140c00",
+					"#1f1501",
+					"#281901",
+					"#3e2723",
+					"#4e342e",
+					"#5d4037",
+					"#6d4c41",
+					"#795548"
+				]
+			},
+			"aged-paper": {
+				"role": "neutral",
+				"displayName": "Aged Paper",
+				"canonical": "#bcaaa4",
+				"tonalRamp": [
+					"#4e342e",
+					"#5d4037",
+					"#6d4c41",
+					"#795548",
+					"#8d6e63",
+					"#a1887f",
+					"#bcaaa4",
+					"#d7ccc8",
+					"#efebe9"
+				]
+			},
+			"amber-accent": {
+				"role": "primary",
+				"displayName": "Amber Accent",
+				"canonical": "#ffcc80",
+				"tonalRamp": [
+					"#e65100",
+					"#ef6c00",
+					"#f57c00",
+					"#fb8c00",
+					"#ff9800",
+					"#ffa726",
+					"#ffb74d",
+					"#ffcc80",
+					"#ffe0b2"
+				]
+			},
+			"muted-amber": {
+				"role": "primary",
+				"displayName": "Muted Amber",
+				"canonical": "#a1887f",
+				"tonalRamp": [
+					"#4e342e",
+					"#5d4037",
+					"#6d4c41",
+					"#795548",
+					"#8d6e63",
+					"#a1887f",
+					"#bcaaa4",
+					"#d7ccc8",
+					"#efebe9"
+				]
+			},
+			"border-wood": {
+				"role": "neutral",
+				"displayName": "Border Wood",
+				"canonical": "#795548",
+				"tonalRamp": [
+					"#3e2723",
+					"#4e342e",
+					"#5d4037",
+					"#6d4c41",
+					"#795548",
+					"#8d6e63",
+					"#a1887f",
+					"#bcaaa4",
+					"#d7ccc8"
+				]
+			},
+			"terminal-prompt": {
+				"role": "secondary",
+				"displayName": "Terminal Prompt",
+				"canonical": "#66bb6a",
+				"tonalRamp": [
+					"#1b5e20",
+					"#2e7d32",
+					"#388e3c",
+					"#43a047",
+					"#4caf50",
+					"#66bb6a",
+					"#81c784",
+					"#a5d6a7",
+					"#c8e6c9"
+				]
+			}
+		},
+		"typographyMeta": {
+			"heading": {
+				"displayName": "Heading",
+				"purpose": "Post titles and major section headings. FangSong brings traditional Chinese typographic authority."
+			},
+			"body": {
+				"displayName": "Body",
+				"purpose": "Prose and most UI text. Bahnschrift Light for geometric clarity and comfortable reading."
+			},
+			"label": {
+				"displayName": "Label",
+				"purpose": "Uppercase monospace labels for metadata categories and topic tags. Wide tracking for technical feel."
+			},
+			"terminal": {
+				"displayName": "Terminal",
+				"purpose": "CLI interface text including commands, post rows, and help output."
+			}
+		},
+		"shadows": [
+			{
+				"name": "code-inset",
+				"value": "inset 0 1px 0 rgba(252, 250, 247, 0.04)",
+				"purpose": "Subtle top-edge glow on code blocks suggesting recessed surface. The only inset shadow in the system."
+			},
+			{
+				"name": "diagram-lift",
+				"value": "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))",
+				"purpose": "Minimal drop shadow on mermaid diagram SVGs for functional clarity. The only outward shadow, applied as SVG filter."
+			}
+		],
+		"motion": [
+			{
+				"name": "hover-instant",
+				"value": "0.15s ease-out",
+				"purpose": "Terminal link hover background appears immediately. Used for color transitions on interactive elements."
+			}
+		],
+		"breakpoints": [
+			{
+				"name": "terminal-max",
+				"value": "900px"
+			},
+			{
+				"name": "article-max",
+				"value": "720px"
+			}
+		]
+	},
+	"components": [
+		{
+			"name": "Terminal Input",
+			"kind": "input",
+			"refersTo": "terminal-input",
+			"description": "Transparent CLI-style input field that feels like typing directly into the terminal.",
+			"html": "<input class=\"ds-terminal-input\" type=\"text\" placeholder=\"--help\" spellcheck=\"false\" autocomplete=\"off\" />",
+			"css": ".ds-terminal-input { background: transparent; border: none; outline: none; font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.875rem; line-height: 1.5; color: #281901; padding: 0; flex: 1; } .ds-terminal-input::placeholder { color: #795548; }"
+		},
+		{
+			"name": "Terminal Link",
+			"kind": "custom",
+			"refersTo": "terminal-link",
+			"description": "Three-column post row link with date, title, and topic. Hover fills with dark timber background.",
+			"html": "<a href=\"#\" class=\"ds-terminal-link\"><span class=\"ds-terminal-date\">2024-07-30</span><span class=\"ds-terminal-title\">The Best Practice of Vibecoding</span><span class=\"ds-terminal-topic\">ai engineering</span></a>",
+			"css": ".ds-terminal-link { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 0.125rem 0; text-decoration: none; transition: background 0.15s ease-out; font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.875rem; } .ds-terminal-link:hover { background: #4e342e; } .ds-terminal-date { color: #bcaaa4; } .ds-terminal-title { color: #281901; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-terminal-topic { color: #ffcc80; }"
+		},
+		{
+			"name": "Post Label",
+			"kind": "custom",
+			"refersTo": "post-label",
+			"description": "Uppercase monospace topic label that appears above post title.",
+			"html": "<p class=\"ds-post-label\">ENGINEERING</p>",
+			"css": ".ds-post-label { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.75rem; font-weight: 400; line-height: 1.5; letter-spacing: 0.2em; text-transform: uppercase; color: #a1887f; margin: 0; }"
+		},
+		{
+			"name": "Accent Link",
+			"kind": "custom",
+			"refersTo": "link-accent",
+			"description": "Amber-colored link with underline on hover. Used in profile footer and post content.",
+			"html": "<a href=\"#\" class=\"ds-link-accent\">GitHub Repository</a>",
+			"css": ".ds-link-accent { color: #ffcc80; text-decoration: none; transition: text-decoration 0.15s ease-out; } .ds-link-accent:hover { text-decoration: underline; }"
+		},
+		{
+			"name": "Code Block",
+			"kind": "custom",
+			"refersTo": "code-block",
+			"description": "Recessed code container with inset shadow and syntax highlighting.",
+			"html": "<pre class=\"ds-code-block\"><code class=\"ds-code\">function greet(name: string) {\n  return `Hello, ${name}!`;\n}</code></pre>",
+			"css": ".ds-code-block { position: relative; margin: 1.25rem 0; background: #5d4037; border: 1px solid #795548; border-radius: 0.5rem; box-shadow: inset 0 1px 0 rgba(252, 250, 247, 0.04); padding: 1rem 1.25rem; overflow-x: auto; scrollbar-color: #795548 #5d4037; scrollbar-width: thin; } .ds-code { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.875rem; line-height: 1.7; color: #281901; background: transparent; padding: 0; border: 0; white-space: pre; }"
+		},
+		{
+			"name": "Inline Code",
+			"kind": "custom",
+			"refersTo": "inline-code",
+			"description": "Compact inline code snippet with tight rounded corners.",
+			"html": "<code class=\"ds-inline-code\">npm install</code>",
+			"css": ".ds-inline-code { background: #5d4037; border: 1px solid #795548; border-radius: 0.35rem; padding: 0.15rem 0.4rem; font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.92em; white-space: nowrap; color: #281901; }"
+		},
+		{
+			"name": "Mermaid Container",
+			"kind": "custom",
+			"refersTo": "mermaid-container",
+			"description": "Dark timber container for mermaid diagrams with generous padding and centered layout.",
+			"html": "<div class=\"ds-mermaid-container\"><svg width=\"200\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"10\" y=\"10\" width=\"180\" height=\"80\" rx=\"8\" fill=\"#4e342e\" stroke=\"#ffcc80\" stroke-width=\"2.5\"/><text x=\"100\" y=\"55\" font-family=\"Bahnschrift Light, sans-serif\" font-size=\"18\" font-weight=\"500\" fill=\"#fcfaf7\" text-anchor=\"middle\">Diagram Node</text></svg></div>",
+			"css": ".ds-mermaid-container { background: #4e342e; border: 1px solid #795548; border-radius: 0.75rem; padding: 2rem; margin: 2rem 0; display: flex; justify-content: center; align-items: center; overflow-x: auto; } .ds-mermaid-container svg { max-width: 100%; height: auto; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3)); }"
+		},
+		{
+			"name": "Profile Card",
+			"kind": "card",
+			"refersTo": "profile-card",
+			"description": "Author card with dark timber background, horizontal layout, and bordered top/bottom.",
+			"html": "<footer class=\"ds-profile-card\"><div class=\"ds-profile-content\"><div class=\"ds-profile-avatar\"><div style=\"width:56px;height:64px;background:#795548;border-radius:4px;\"></div></div><div class=\"ds-profile-text\"><p class=\"ds-profile-name\">dkj121</p><p class=\"ds-profile-bio\">Personal blog exploring AI, engineering, and programming</p><div class=\"ds-profile-links\"><a href=\"#\" class=\"ds-profile-link\">github</a><span class=\"ds-profile-divider\">|</span><a href=\"#\" class=\"ds-profile-link\">email</a></div></div></div></footer>",
+			"css": ".ds-profile-card { background: #4e342e; border-top: 1px solid #795548; border-bottom: 1px solid #795548; max-width: 900px; margin: 4rem auto 0; padding: 2rem 1.5rem; } .ds-profile-content { display: flex; gap: 1rem; align-items: flex-start; } .ds-profile-name { font-size: 1.125rem; font-weight: 600; color: #fcfaf7; margin: 0 0 0.5rem 0; } .ds-profile-bio { font-size: 0.875rem; color: #bcaaa4; margin: 0 0 1rem 0; line-height: 1.5; } .ds-profile-links { display: flex; gap: 1.5rem; font-size: 0.875rem; align-items: center; } .ds-profile-link { color: #bcaaa4; text-decoration: none; transition: color 0.15s ease-out; } .ds-profile-link:hover { color: #ffcc80; } .ds-profile-divider { color: #795548; }"
+		},
+		{
+			"name": "Table",
+			"kind": "custom",
+			"refersTo": "table",
+			"description": "Border-collapse table with timber brown background and consistent cell padding.",
+			"html": "<table class=\"ds-table\"><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody><tr><td>Terminal Menu</td><td>CLI-style navigation</td></tr><tr><td>Mermaid Support</td><td>Diagram rendering</td></tr></tbody></table>",
+			"css": ".ds-table { background: #5d4037; border: 1px solid #795548; border-collapse: collapse; margin: 1.25rem 0; width: 100%; } .ds-table th, .ds-table td { background: #5d4037; border: 1px solid #795548; padding: 0.65rem 0.8rem; text-align: left; font-family: 'Bahnschrift Light', 'Bahnschrift', 'Segoe UI', sans-serif; font-size: 1rem; color: #fcfaf7; } .ds-table th { font-weight: 400; }"
+		},
+		{
+			"name": "Blockquote",
+			"kind": "custom",
+			"refersTo": "blockquote",
+			"description": "Quotation block with 3px left border in border wood color.",
+			"html": "<blockquote class=\"ds-blockquote\">This is a quote from the blog post content that provides context or emphasis.</blockquote>",
+			"css": ".ds-blockquote { background: #5d4037; border-left: 3px solid #795548; padding: 0.85rem 1rem; margin: 1.25rem 0; font-family: 'Bahnschrift Light', 'Bahnschrift', 'Segoe UI', sans-serif; font-size: 1rem; line-height: 1.6; color: #fcfaf7; }"
+		}
+	],
+	"narrative": {
+		"northStar": "The Warm Study",
+		"overview": "This is a personal technical blog that balances developer precision with reading comfort. The design evokes a warm study lined with aged wood and worn books — intimate and focused, but systematic in its information architecture. The home page is a terminal-style directory listing where posts are navigated through CLI patterns; individual posts shift into a book-like reading mode with generous margins and serif headings. The brown palette suggests craft and durability; the monospace typography grounds the interface in technical truth.\n\nThe system is deliberately restrained. One accent color (amber) marks interaction and metadata; depth comes from tonal layering, not shadows. Chinese and Latin typography coexist through carefully chosen font stacks. The design refuses decoration: no gradients, no glass effects, no emoji standing in for icons. Every element serves reading or navigation.",
+		"keyCharacteristics": [
+			"Dual-mode interface: terminal for navigation, prose for reading",
+			"Warm brown palette suggesting aged wood and paper",
+			"Flat tonal depth model — no shadows except subtle insets",
+			"Monospace for system UI, serif for content headings, sans for body",
+			"Single amber accent used sparingly for interaction cues",
+			"Bilingual typography optimized for Chinese and Latin scripts"
+		],
+		"rules": [
+			{
+				"name": "The One Voice Rule",
+				"body": "Amber accent appears on ≤10% of any screen. Its rarity preserves its signal as an interaction or metadata cue. When in doubt, use neutral tones.",
+				"section": "colors"
+			},
+			{
+				"name": "The Tonal Separation Rule",
+				"body": "Depth is expressed through darker browns, never shadows (except inset on code blocks). Dark Timber (#4e342e) cards sit on Timber Brown (#5d4037) background; the 9% lightness difference creates clear layering without decoration.",
+				"section": "colors"
+			},
+			{
+				"name": "The Font-per-Mode Rule",
+				"body": "Monospace (JetBrains Mono) owns the terminal home page and code. Serif (FangSong) owns content headings. Sans (Bahnschrift Light) owns body prose and the profile card. Never mix modes within a single context.",
+				"section": "typography"
+			},
+			{
+				"name": "The Fallback Path Rule",
+				"body": "Every font family includes a Chinese-optimized fallback (Noto Serif SC, Microsoft YaHei UI implied, system CJK stacks) before the generic keyword. The blog is bilingual; Chinese glyphs must render with the same authority as Latin.",
+				"section": "typography"
+			},
+			{
+				"name": "The No-Shadow Rule",
+				"body": "Drop shadows (offset blur) do not exist in this system. Depth comes from tonal contrast. The one exception is mermaid diagrams, which receive a minimal drop-shadow for functional clarity.",
+				"section": "elevation"
+			},
+			{
+				"name": "The Inset-Only Rule",
+				"body": "When a shadow is necessary, it must push inward (inset) to suggest a carved or recessed surface. Outward shadows imply lifting or floating, which conflicts with the flat-panel aesthetic.",
+				"section": "elevation"
+			},
+			{
+				"name": "The No-Decoration Border Rule",
+				"body": "Colored left/right borders as decoration (the 4px accent stripe on cards) are banned. The only colored border is blockquote's 3px left edge in Border Wood, which serves a semantic role (quotation indicator), not decoration.",
+				"section": "shapes"
+			}
+		],
+		"dos": [
+			"Do use Amber Accent (#ffcc80) sparingly — only for interactive elements (links, hover states) and metadata labels (topic tags). Its scarcity is the signal.",
+			"Do express depth through tonal layering: Dark Timber (#4e342e) surfaces sit on Timber Brown (#5d4037) backgrounds. The 9% lightness difference is enough.",
+			"Do use monospace (JetBrains Mono) for all CLI interface elements, labels, and code. It anchors the technical character.",
+			"Do use serif (FangSong) for post headings to bring traditional Chinese typographic authority. The contrast with sans-serif body is intentional.",
+			"Do preserve generous vertical spacing in reading mode: 2.5rem above H2 headings, 2rem padding on diagrams and code blocks.",
+			"Do use 1px Border Wood (#795548) borders for all structural separation (dividers, tables, containers). Consistent stroke weight throughout.",
+			"Do ensure Chinese and Latin text render with equal authority by including Chinese-optimized fallbacks in every font stack."
+		],
+		"donts": [
+			"Don't use drop shadows (offset blur). The one exception is mermaid diagrams' minimal drop-shadow for functional clarity.",
+			"Don't use gradients, glass effects, or blur as decoration.",
+			"Don't introduce a second accent color. Amber is the sole voice; introducing blue or green dilutes its signal.",
+			"Don't use emoji or Unicode glyphs as icons. If icons are needed, use SVG from a consistent library.",
+			"Don't use colored left/right borders on cards or list items for decoration. Blockquote's 3px left border is semantic, not ornamental.",
+			"Don't mix typography modes within a context: no monospace in prose paragraphs (except <code>), no serif in the terminal menu.",
+			"Don't add rounded corners beyond the established scale (0.35rem, 0.5rem, 0.75rem). Pills (999px radius) are reserved for scrollbar thumbs only.",
+			"Don't break the 720px article measure for body text. Long lines reduce comprehension; the constraint is intentional."
+		]
+	}
+}
