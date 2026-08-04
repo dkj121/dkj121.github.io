@@ -91,36 +91,36 @@ topic: [ai, engineering, programming]
 7. 提供/生成合适的 CI/CD/workflows 供 ai 规范流程
 
 > 下图省略描述词，仅提供对应指令（同时代替具体内容），仅供参考（frontend first）
-> 此外，对于多 agents 并行，claude code 采用了新的策略 [agent team](https://code.claude.com/docs/en/agents) 来适配大型项目
+> 此外，对于多 agents 并行，claude code 采用了不同的策略 [Run agents in parallel](https://code.claude.com/docs/en/agents) 来适配各种项目
 
 ```mermaid
 
 graph TD
 
-Start1[ /recall 或\ncodegraph init ]
-Start2[ /plan \n/superpowers:brainstorming \n/superpowers:writing-plans ]
-Start3[ /understand \n/understand-dashboard ]
+Start1[ /recall 或 codegraph init ]
+Start2[ /plan /superpowers:brainstorming /superpowers:writing-plans ]
+Start3[ /understand /understand-dashboard ]
 Start4[ /plan ]
 Start5[ /init ]
 
-Frontend1[ /design-taste-frontend \n/impeccable init \n/find-animation-opportunities ]
-Frontend3[ /redesign-existing-project \n/prototype \n/improve-animations ]
-Frontend2[ /impeccable + \n具体修改内容 ]
+Frontend1[ /design-taste-frontend /impeccable init /find-animation-opportunities ]
+Frontend3[ /redesign-existing-project /prototype /improve-animations ]
+Frontend2[ /impeccable + 具体修改内容 ]
 
-Step1[ /setup-matt-pocock-skills \n/ask-matt ]
-Step2[ 具体修改细节、\n后续功能等 ]
+Step1[ /setup-matt-pocock-skills /ask-matt ]
+Step2[ 具体修改细节、后续功能等 ]
 
-Finish1[ /remember \ncodegraph sync ]
+Finish1[ /remember codegraph sync ]
 
 Start1 -->|对于大型项目|Start2 --> Start5
 Start1 -->|对于入手项目|Start3 --> Start5
 Start1 -->|对于小型项目|Start4 --> Start5
 
-Start5 -->|对于前端部分|Frontend1 --> Frontend3 --> Frontend2
-Frontend3 --> Frontend3
-Frontend2 --> Step1
-
 Start5 --> Step1
+
+Step1 -->|对于前端部分|Frontend1 --> Frontend3 --> Frontend2
+Frontend3 --> Frontend3
+Frontend2 --> Step2
 
 Step1 --> Step2 --> Finish1
 
@@ -132,6 +132,10 @@ Step1 --> Step2 --> Finish1
 
 “设计环境、反馈回路和控制系统” 这是 OpenAI 在 2026 年初提出的一套 ai-engineering 对人类而言需要解决的核心问题。
 
-ai 本质上作为一个使用工具的工具，每一次对话都是在从头构建一套工具包，在每一次对话都是在为当前项目设计一套工具包。
+ai 本质上作为一个使用工具的工具，每一次对话都是在从头构建一套工具包（上下文），在每一次对话都是在为当前项目设计一套工具包（上下文）。
+
+> 即 [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
 对于小玩具来说或许没必要如此讲究，但是对大多数人来说，不光是为了提高效率，更是为了在未来的开发中，能够更好的适应 ai 的发展。
+
+> 对于更多工程实践，可以前往 [Engineering at Anthropic](https://www.anthropic.com/engineering)、[Stories about the technology and builders at OpenAI.](https://openai.com/zh-Hans-CN/news/engineering/)
