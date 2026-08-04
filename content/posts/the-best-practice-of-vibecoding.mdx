@@ -65,7 +65,7 @@ topic: [ai, engineering, programming]
 
 ## 四、一些 extension
 
-> 除了以下内容 claude code 官方也提供了大量[优秀的拓展](https://github.com/anthropics/claude-plugins-official)、[skills](https://github.com/anthropics/skills)
+> 除了以下内容 claude code 官方也提供了大量优秀的 [plugins](https://github.com/anthropics/claude-plugins-official)、[skills](https://github.com/anthropics/skills)
 
 |                               Extensions                                |                                  简介                                  |
 | :---------------------------------------------------------------------: | :--------------------------------------------------------------------: |
@@ -78,7 +78,12 @@ topic: [ai, engineering, programming]
 |           [impeccable](https://github.com/pbakaus/impeccable)           |        与上一个类似，相较而言，提供了一套工作流，便于进一步调试        |
 | [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | 一套方便开发者（或者 ai ）快速入门一个仓库的一组插件 claude code 原生  |
 
-> 尽管当前大多数 ai 能够自主的调用大部分拓展，但是这里依然还是建议开发者在开发过程中主动声明已有的拓展，以便于 ai 进行更好的调用。
+> 尽管当前大多数 ai 能够自主的调用大部分拓展，但是这里依然还是建议开发者在开发过程中主动声明已有的拓展，以便于 ai 进行更好的调用（实际上对于ai不会主动调用的拓展反而是不成功的）
+> 对于自己生成的 skills 一般仅分三种情况：
+> 1. 当前项目的固定 workflow
+> 2. 文档、图片生成（大多数前端 skills 都包含）
+> 3. 强调利用 MCP （大多数 MCP 提供方都会同时提供对应 skills）
+> 并且严格按照：`What it does` + `When to use it` + `Key capabilities` 格式进行描述
 
 ## 五、Quickly Start (normal)
 
@@ -90,7 +95,7 @@ topic: [ai, engineering, programming]
 4. 对于前端修改，先利用 [figma](https://www.figma.com/)、[pen](https://www.pen.dev/)、[penpot](https://penpot.app/) 等工具先生成样例文件，待最终确定后再开始编码
 5. 对于体系分明的项目，适当使用 `/skill-creator` 等 skill 生成指令或者使用 `/find-skill`来生成或找到对应的 skill
 6. 即时覆写 ai 写好的 plan 文件
-7. 提供/生成合适的 CI/CD/workflows 供 ai 规范流程
+7. 提供/生成合适的 skills/plugins 供 ai 规范流程
 
 > 此外，对于多 agents 并行，claude code 采用了不同的策略 [Run agents in parallel](https://code.claude.com/docs/en/agents) 来适配各种项目
 
