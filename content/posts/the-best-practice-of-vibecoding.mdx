@@ -82,6 +82,8 @@ topic: [ai, engineering, programming]
 
 ## 五、Quickly Start (normal)
 
+> 下文利用 skills 代替具体命令，仅供参考
+
 1. 对于大型项目，建议使用 `/plan /superpowers:brainstorming /superpowers:writing-plans` 来进行项目的整体规划，尽可能详尽的阐述项目架构、技术实现、项目内容。
 2. 不要一次性输入多个可能改变 agent 角色的 `/prompt`，尽可能的将每一个 prompt 的内容拆分开来或者使用 `/superpowers:dispatching-parallel-agents` 拆分没有关联的任务，避免 ai 过度记忆导致的混乱（对于适用于一组工作流的可以尝试，但是依旧尽量避免）
 3. 对于每一处特定函数修改，强调使用 `/codebase-memory`
@@ -90,7 +92,6 @@ topic: [ai, engineering, programming]
 6. 即时覆写 ai 写好的 plan 文件
 7. 提供/生成合适的 CI/CD/workflows 供 ai 规范流程
 
-> 下图省略描述词，仅提供对应指令（同时代替具体内容），仅供参考（frontend first）
 > 此外，对于多 agents 并行，claude code 采用了不同的策略 [Run agents in parallel](https://code.claude.com/docs/en/agents) 来适配各种项目
 
 ```mermaid
