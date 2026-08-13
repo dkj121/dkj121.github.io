@@ -120,8 +120,21 @@ body {
 .post-article .prose :where(blockquote) {
 	background: var(--color-bg);
 	border-left: 3px solid var(--color-divider);
-	padding: 0.85rem 1rem;
+	padding: 0.5rem 1rem;
 	margin: 1.25rem 0;
+}
+
+/* Neutralize Fumadocs' 1.25em top/bottom margin on paragraphs inside quotes */
+.post-article .prose :where(blockquote) :where(p) {
+	margin: 0.25rem 0;
+}
+
+.post-article .prose :where(blockquote) :where(p:first-child) {
+	margin-top: 0;
+}
+
+.post-article .prose :where(blockquote) :where(p:last-child) {
+	margin-bottom: 0;
 }
 
 .post-article .prose :where(.hljs-comment, .hljs-quote) {
