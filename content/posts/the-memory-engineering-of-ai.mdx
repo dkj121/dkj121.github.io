@@ -1,0 +1,61 @@
+---
+title: AI 的记忆工程
+date: 2026-08-04
+topic: [ai, engineering]
+---
+
+## 一、[AGI](https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7)
+
+> [arc-agi](https://arcprize.org/arc-agi/3) 一套测试 AGI 的标准化测试，旨在评估人工智能系统在各种任务中的表现和能力。
+
+通用人工智能（artificial general intelligence，AGI）作为一种能够学习并执行人或其他动物所能完成的任何智力任务，或者说是在大多数具有经济价值的任务上超越人类能力的自主系统。
+
+而创造通用人工智能是一些人工智能研究以及 [Deepseek](https://github.com/deepseek-ai/open-infra-index)、[OpenAI](https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/)、[DeepMind](https://deepmind.google/blog/taking-a-responsible-path-to-agi/) 和 [Anthropic](https://www.anthropic.com/) 等公司的首要目标。
+
+> Artificial general intelligence (AGI), AI that’s at least as capable as humans at most cognitive tasks, could be here within the coming years.  ———— Anca Dragan, Rohin Shah, Four Flynn and Shane Legg [《Taking a responsible path to AGI》](https://deepmind.google/blog/taking-a-responsible-path-to-agi/)
+> 实际上 OpenAI 甚至早在 [2023](https://openai.com/index/introducing-superalignment/) 年就启动了 [ASI](https://zh.wikipedia.org/wiki/%E8%B6%85%E6%99%BA%E8%83%BD) 作为下一步研发目标
+
+他们必须具有以下目标：
+
+1. 自动推理，使用一些策略来解决问题，在不确定性的环境中作出决策；
+2. 知识表示，包括常识知识库；
+3. 自动规划；
+4. 自主学习、创新；
+5. 使用自然语言进行沟通；
+6. 以及，集成以上这些手段来达到同一个的目标；
+
+而相较而言，当前的人工智能甚至不能说是 AGI 的一个分支。
+
+而以下记忆工程，则是基于当前人工智能强度，所做出的一组尝试。
+
+## 二、[context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+**上下文** 决定 ai 开发上限，对于单个工程的单次 session ，context 在开发中起到关键作用。
+
+> 对于复杂工程，同时也存在着类似于 [agentmemory](https://github.com/rohitg00/agentmemory)、[skills/handoff](https://github.com/mattpocock/skills/blob/main/skills/productivity/handoff/SKILL.md) 这样的负责处理 session 间信息传递的方法。
+
+对于开发过程中而言，适当的 undo、clear 保留有效信息，总结成 skill、memory ，有时比一次一次反复拉扯更加有效。
+
+## 三、[prompt engineering](https://zh.wikipedia.org/wiki/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B)
+
+> 更多提示词细节可参考：[best-practices-for-prompt-engineering](https://claude.com/blog/best-practices-for-prompt-engineering)、[codex_prompting_guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide)
+
+作为管理 ai 记忆的一个重要工程，[Anthropic](https://claude.com/blog/best-practices-for-prompt-engineering)、[OpenAI](https://developers.openai.com/api/docs/guides/prompt-engineering) 都曾描述过其在开发过程中的关键作用。
+
+同时，作为个人实际工作中与 AI 交互的主要途径，怎么样正确的表达当前需求、怎么样适当的提供上下文背景、怎么样调用合适的工具，这些都需要个人在实战中在一次次燃烧 token 中总结出来。
+
+## 四、[skills](https://support.claude.com/en/articles/12512176-what-are-skills)
+
+所谓 skill 尤其是 SKILL.md 所描述的内容，大体上就是将 prompt 压缩成可复用件。
+
+对于 Anthropic 官方期望的 skill 则更接近于一组包含 脚本文件、agents 描述、skill 简介 的 [plugin](https://code.claude.com/docs/en/plugins-reference)
+
+近年来，很多以 workflow 为核心的 ai 开发工具的 **节点** 与其有着异曲同工之妙。（例如 [n8n](https://n8n.io/)、[CompfyUI](https://comfy.org/) 等）
+
+但是，考虑到如上述 AGI 的目标，prompt engineering 也许只是一个过渡阶段的产物，正如近期 [PI](https://pi.dev/) 这一 [harness](https://learn.microsoft.com/en-us/agent-framework/concepts/harness?pivots=programming-language-csharp) 的广泛使用，其近乎零干预的特性，将主动权交给 ai，或许预示着未来 ai 开发的方向。
+
+## 五、综上
+
+对于大多数用户来说，很多任务仅仅只需要执行一次 `/superpowers:using-superpowers [object]` 即可全程免打扰的完成任务。
+
+随着 AI 的发展，上述的 context engineering、prompt engineering、skills 等等，或许会成为一抹浮云，随即被淡忘在记忆的长河中。

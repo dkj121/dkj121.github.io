@@ -99,13 +99,13 @@ topic: [ai, engineering, programming]
 
 1. 对于大型项目，建议使用 `/plan /superpowers:brainstorming /superpowers:writing-plans` 来进行项目的整体规划，尽可能详尽的阐述项目架构、技术实现、项目内容。
 2. 不要一次性输入多个可能改变 agent 角色的 `/prompt`，尽可能的将每一个 prompt 的内容拆分开来或者使用 `/superpowers:dispatching-parallel-agents` 拆分没有关联的任务，避免 ai 过度记忆导致的混乱（对于适用于一组工作流的可以尝试，但是依旧尽量避免）
-3. 对于每一处特定函数修改，强调使用 `/codebase-memory`（或其他相关技能）
+3. 适当的使用 `/mattpocock-skills:handoff`、`/undo`、`/clear` 清理无用的上下文
 4. 对于前端修改，先利用 [figma](https://www.figma.com/)、[pen](https://www.pen.dev/)、[penpot](https://penpot.app/) 等工具先生成样例文件，待最终确定后再开始编码
 5. 对于体系分明的项目，在开发过程中，适当使用 `/skill-creator` 等 skill 生成指令或者使用 `/find-skill`来生成或找到对应的 skill
 6. 即时覆写 ai 写好的 plan 文件
 
 > 此外，对于多 agents 并行，claude code 采用了不同的策略 [Run agents in parallel](https://code.claude.com/docs/en/agents) 来适配各种项目
-> 至于更多命令细节可参考：[best-practices-for-prompt-engineering](https://claude.com/blog/best-practices-for-prompt-engineering)、[codex_prompting_guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide)
+> 至于更多提示词细节可参考：[best-practices-for-prompt-engineering](https://claude.com/blog/best-practices-for-prompt-engineering)、[codex_prompting_guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide)
 
 ## 六、总结
 
