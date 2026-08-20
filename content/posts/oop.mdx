@@ -1,0 +1,435 @@
+---
+title: Object-Oriented Programming
+date: 2026-08-19
+topic: [csharp, oop, engineering, programming]
+---
+
+## 一、导入
+
+OOP（Object-Oriented Programming，面向对象编程）是一种编程范式，它使用“对象”来设计应用程序和计算机程序。
+
+很多人在初次**学习**OOP时，可能会感到有些困惑，因为传统的编程范式，如过程式编程，其实已经足以完成自己设想中大多数编程任务了。
+
+毕竟，数据结构和算法是编程的核心，代码所做的一切，不过是对数据进行一步步的输入、处理和输出。
+
+但是显然，当代码量从几十行增加到几百行、几千行甚至更多时，程序的复杂度也会随之增加，这时候仅仅只靠过程式编程的思路就显得力不从心了，这一步和下一步的关系变得越来越难以把握，代码的可读性和可维护性也会大幅下降。
+
+而面向对象最重要的功能便体现在管理代码的层面。
+
+## 二、猪脚饭！牛肉面！小糕点！
+
+中国是有 56 个民族，坐拥五千年的历史文化，拥有丰富的饮食文化。中国的饮食文化博大精深，地域差异明显，形成了八大菜系和众多地方特色美食。
+
+对于同一家的门头（餐馆）、不同的员工，他们的职责（下面称作 interface(接口) ）不同。对于同一个员工、不同的餐馆，他们的工作方法（下面称作 method(方法) ）也不同
+
+但是对人来说，做饭、端盘子、整理物品确是手拿把掐的事情，我们或许可以称之为技能（下面称作 implement(实现) interface(接口) ），同样是做饭、端盘子、整理物品，不同的员工又有不同的技能实现（下面称作 polymorphism(多态)）
+
+## 三、基础实现
+
+下面的一份代码是实现了一个简单的外卖服务系统，里面包含了餐馆(Restaurant)、员工(Employee)、骑手(DeliveryDriver)、客人(Customer)的概念。
+
+```csharp
+/// Order.cs
+namespace Food;
+
+/// <summary>
+/// 订单类，包含订单的基本信息，如起点、目的地和食物内容。
+/// </summary>
+public class Order
+{
+		public string Origin { get; }
+		public string Destination { get; }
+		public string FoodItem { get; }
+
+		public Order(string origin, string destination, string foodItem)
+		{
+				Origin = origin;
+				Destination = destination;
+				FoodItem = foodItem;
+		}
+}
+```
+
+```csharp
+/// Restaurant.cs
+using System;
+namespace Food;
+
+/// <summary>
+/// 餐馆类，包含餐馆的基本信息，如名称、地址和菜单。
+/// </summary>
+public class Restaurant
+{
+		public string Name { get; }
+		public List<string> Menu { get; set; } = new List<string>();
+		public List<Employee> Employees { get; set; } = new List<Employee>();
+
+		public Restaurant(string name, string address)
+		{
+				Name = name;
+		}
+
+		public Order CreateOrder(string foodItem, Customer customer)
+		{
+				if (Menu.Contains(foodItem))
+				{
+						foreach (Employee employee in Employees)
+						{
+								if (employee.IsAvailable)
+								{
+										Console.WriteLine($"Employee {employee.Name} is preparing the order: {foodItem}");
+										employee.IsAvailable = false;
+										Order order = new Order(Name, customer.Address, foodItem);
+										Console.WriteLine($"Order created by {employee.Name}: {foodItem} from {Name} to {customer.Name}");
+										return order;
+								}
+						}
+				}
+				else
+				{
+						Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
+						return null;
+				}
+		}
+}
+```
+
+```csharp
+/// Employee.cs
+namespace Food;
+
+/// <summary>
+/// 员工类，包含员工的基本信息，如姓名和技能。
+/// </summary>
+public class Employee
+{
+		public string Name { get; }
+		public string Skill { get; }
+		public bool IsAvailable { get; set; } = true;
+
+		public Employee(string name, string skill)
+		{
+				Name = name;
+				Skill = skill;
+		}
+}
+```
+
+```csharp
+/// DeliveryDriver.cs
+using System;
+namespace Food;
+
+/// <summary>
+/// 骑手类，包含骑手的基本信息，如姓名和订单列表。
+/// </summary>
+public class DeliveryDriver
+{
+		public string Name { get; }
+		public List<Order> Orders { get; set; } = new List<Order>();
+
+		public DeliveryDriver(string name)
+		{
+				Name = name;
+		}
+
+		public void AddOrder(Order order)
+		{
+				if (order is null)
+				{
+						Console.WriteLine("Cannot add a null order.");
+						return;
+				}
+				Orders.Add(order);
+		}
+
+		/// <summary>
+		/// 模拟骑手送餐的过程，遍历订单列表并打印送餐信息，送完后清空订单列表。
+		/// </summary>
+		public void DeliverOrders()
+		{
+				foreach (var order in Orders)
+				{
+						Console.WriteLine($"Delivering order {order.Origin} to {order.Destination} with food item {order.FoodItem}");
+				}
+				Orders.Clear();
+		}
+}
+```
+
+```csharp
+/// Customer.cs
+using System;
+namespace Food;
+
+/// <summary>
+/// 客人类，包含客人的基本信息，如姓名和地址。
+/// </summary>
+public class Customer
+{
+		public string Name { get; }
+		public string Address { get; }
+
+		public Customer(string name, string address)
+		{
+				Name = name;
+				Address = address;
+		}
+
+		public void ReceiveOrder(Order order)
+		{
+				Console.WriteLine($"Customer {Name} received order from {order.Origin} with food item {order.FoodItem}");
+		}
+}
+```
+
+```csharp
+/// Program.cs
+using Food;
+using System;
+
+/// <summary>
+/// 主程序类，包含程序的入口点。
+/// </summary>
+class Program
+{
+		static void Main(string[] args)
+		{
+				// 创建餐馆对象
+				Restaurant restaurant = new Restaurant("Delicious Food");
+
+				// 创建员工对象
+				Employee chef = new Employee("Alice", "Everything");
+
+				// 创建骑手对象
+				DeliveryDriver driver = new DeliveryDriver("Charlie");
+
+				// 创建客人对象
+				Customer customer = new Customer("David", "456 Elm St");
+
+				// 添加菜单项
+				restaurant._menu.Add("Pork Rice");
+				restaurant._menu.Add("Beef Noodles");
+
+				// 创建订单对象
+				Order order1 = restaurant.CreateOrder("Pork Rice", customer);
+				Order order2 = restaurant.CreateOrder("Beef Noodles", customer);
+
+				// 骑手接收订单
+				driver.AddOrder(order1);
+				driver.AddOrder(order2);
+
+				// 骑手送餐
+				driver.DeliverOrders();
+
+				// 客人接收订单
+				customer.ReceiveOrder(order1);
+				customer.ReceiveOrder(order2);
+		}
+}
+```
+
+在这里，我们通过最简单的对象来实现了一个外卖服务系统的基本功能。每个类都代表了系统中的一个实体，并且通过方法和属性来定义它们的行为和状态。
+
+但是，随着系统的复杂度增加，我们可能需要引入更多的类和接口来管理不同的功能和行为，这就是面向对象编程的魅力所在。
+
+例如，对于当前员工对象来说，一个员工只能拥有一个技能，但是出于资本家的善意，我们希望员工可以拥有多项技能，这样他们就可以在不同的岗位上工作。
+
+最简单的实现就是在 Employee 类中添加一个技能列表，并在创建员工对象时指定其技能。然后，我们可以通过检查员工的技能列表来判断他们是否具备某项技能。
+
+例如：
+
+```csharp
+public class Employee
+{
+		public string Name { get; }
+		public List<string> Skills { get; set; } = new List<string>();
+		public bool IsAvailable { get; set; } = true;
+
+		public Employee(string name, List<string> skills)
+		{
+				Name = name;
+		}
+
+		public bool HasSkill(string skill)
+		{
+				return Skills.Contains(skill);
+		}
+}
+```
+
+```csharp
+public class Restaurant
+{
+		// ... 其他属性和方法 ...
+
+		public Order CreateOrder(string foodItem, Customer customer)
+		{
+				if (_menu.Contains(foodItem))
+				{
+						foreach (Employee employee in _employees)
+						{
+								if (employee.IsAvailable && employee.HasSkill("Cooking"))
+								{
+										Console.WriteLine($"Employee {employee.Name} is preparing the order: {foodItem}");
+										employee.IsAvailable = false;
+										Order order = new Order(_address, customer._address, foodItem);
+										Console.WriteLine($"Order created by {employee.Name}: {foodItem} from {_name} to {customer._name}");
+										return order;
+								}
+						}
+				}
+				else
+				{
+						Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
+						return null;
+				}
+		}
+}
+```
+
+但是，这种实现方式不论是性能上，还是实现上都并不优雅（需要大量的判断以及搜索），也不符合面向对象编程的原则。我们可以通过引入接口（interface）来更好地管理员工的技能。
+
+## 四、接口(interface)
+
+例如，考虑到并不是每一个员工都会做饭，我们定义一个 ICookable 接口，表示具备做饭技能的员工。然后，我们可以让具备做饭技能的员工类实现这个接口。
+
+```csharp
+/// ICookable.cs
+namespace Food;
+
+/// <summary>
+/// ICookable 接口，表示具备做饭技能的员工。
+/// </summary>
+public interface ICookable
+{
+		void Cook(string foodItem);
+}
+```
+
+```csharp
+/// Employee.cs
+namespace Food;
+
+/// <summary>
+/// 普通员工类，表示普通员工
+/// </summary>
+public abstract class Employee
+{
+	public abstract string _name { get; set; }
+	public abstract bool IsAvailable { get; set; }
+
+	public Employee(string name)
+	{
+		_name = name;
+	}
+}
+
+/// <summary>
+/// 厨师类，表示具备做饭技能的员工
+/// </summary>
+public class Chef : Employee, ICookable
+{
+	public override string _name { get; set; }
+	public override bool IsAvailable { get; set; } = true;
+
+	public Chef(string name) : base(name)
+	{
+		_name = name;
+	}
+	public void Cook(string foodItem)
+	{
+		Console.WriteLine($"Cook {_name} is cooking {foodItem}");
+	}
+}
+```
+
+同时，对于 Restaurant.cs
+
+```csharp
+/// Restaurant.cs
+using System;
+namespace Food;
+
+/// <summary>
+/// 餐馆类，包含餐馆的基本信息，如名称、地址和菜单。
+/// </summary>
+public class Restaurant
+{
+		public string _name { get; set; }
+		public string _address { get; set; }
+		public List<string> _menu { get; set; }
+		public List<Employee> _employees { get; set; } = new List<Employee>();
+
+		public Restaurant(string name, string address)
+		{
+				_name = name;
+				_address = address;
+				_menu = new List<string>();
+		}
+
+		public Order CreateOrder(string foodItem, ICookable cook, Customer customer)
+		{
+				if (_menu.Contains(foodItem))
+				{
+						cook.CookFood(foodItem);
+						Console.WriteLine($"Order created: {foodItem} from {_name} to {customer._name}");
+						return order;
+				}
+				else
+				{
+						Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
+						return null;
+				}
+		}
+}
+```
+
+同时，对于 Program.cs
+
+```csharp
+/// Program.cs
+using Food;
+using System;
+
+/// <summary>
+/// 主程序类，包含程序的入口点。
+/// </summary>
+class Program
+{
+		static void Main(string[] args)
+		{
+				// 创建餐馆对象
+				Restaurant restaurant = new Restaurant("Delicious Food", "123 Main St");
+
+				// 创建厨师对象
+				Cook chef = new Cook("Alice");
+
+				// 创建骑手对象
+				DeliveryDriver driver = new DeliveryDriver("Charlie");
+
+				// 创建客人对象
+				Customer customer = new Customer("David", "456 Elm St");
+
+				// 添加菜单项
+				restaurant._menu.Add("Pork Rice");
+				restaurant._menu.Add("Beef Noodles");
+
+				// 创建订单对象
+				Order order1 = restaurant.CreateOrder("Pork Rice", customer);
+				Order order2 = restaurant.CreateOrder("Beef Noodles", customer);
+
+				// 骑手接收订单
+				driver.AddOrder(order1);
+				driver.AddOrder(order2);
+
+				// 骑手送餐
+				driver.DeliverOrders();
+
+				// 客人接收订单
+				customer.ReceiveOrder(order1);
+				customer.ReceiveOrder(order2);
+		}
+}
+
+```
