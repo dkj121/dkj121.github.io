@@ -37,9 +37,10 @@ namespace Food;
 /// </summary>
 public class Order
 {
-		public string Origin { get; }
-		public string Destination { get; }
-		public string FoodItem { get; }
+		public string Origin { get; init; }
+		public string Destination { get; init; }
+		public bool IsDelivered { get; set; } = false;
+		public string FoodItem { get; init; }
 
 		public Order(string origin, string destination, string foodItem)
 		{
@@ -60,7 +61,7 @@ namespace Food;
 /// </summary>
 public class Restaurant
 {
-		public string Name { get; }
+		public string Name { get; init; }
 		public List<string> Menu { get; set; } = new List<string>();
 		public List<Employee> Employees { get; set; } = new List<Employee>();
 
@@ -69,6 +70,11 @@ public class Restaurant
 				Name = name;
 		}
 
+		/// <summary>
+		/// 创建订单的方法，检查菜单中是否包含所点的食物，如果包含，则返回订单对象；否则，提示食物不在菜单中。
+		/// </summary>
+		/// <param name="foodItem">所点的食物名称</param>
+		/// <param name="customer">客人对象</param>
 		public Order CreateOrder(string foodItem, Customer customer)
 		{
 				if (Menu.Contains(foodItem))
@@ -103,8 +109,8 @@ namespace Food;
 /// </summary>
 public class Employee
 {
-		public string Name { get; }
-		public string Skill { get; }
+		public string Name { get; init; }
+		public string Skill { get; init; }
 		public bool IsAvailable { get; set; } = true;
 
 		public Employee(string name, string skill)
@@ -125,7 +131,7 @@ namespace Food;
 /// </summary>
 public class DeliveryDriver
 {
-		public string Name { get; }
+		public string Name { get; init; }
 		public List<Order> Orders { get; set; } = new List<Order>();
 
 		public DeliveryDriver(string name)
@@ -151,6 +157,7 @@ public class DeliveryDriver
 				foreach (var order in Orders)
 				{
 						Console.WriteLine($"Delivering order {order.Origin} to {order.Destination} with food item {order.FoodItem}");
+						order.IsDelivered = true;
 				}
 				Orders.Clear();
 		}
@@ -167,8 +174,8 @@ namespace Food;
 /// </summary>
 public class Customer
 {
-		public string Name { get; }
-		public string Address { get; }
+		public string Name { get; init; }
+		public string Address { get; init; }
 
 		public Customer(string name, string address)
 		{
@@ -178,6 +185,11 @@ public class Customer
 
 		public void ReceiveOrder(Order order)
 		{
+			  if (!order.IsDelivered)
+				{
+					Console.WriteLine($"Order from {order.Origin} to {order.Destination} with food item {order.FoodItem} has not been delivered yet.");
+					return;
+				}
 				Console.WriteLine($"Customer {Name} received order from {order.Origin} with food item {order.FoodItem}");
 		}
 }
@@ -242,7 +254,7 @@ class Program
 ```csharp
 public class Employee
 {
-		public string Name { get; }
+		public string Name { get; init; }
 		public List<string> Skills { get; set; } = new List<string>();
 		public bool IsAvailable { get; set; } = true;
 
@@ -263,6 +275,12 @@ public class Restaurant
 {
 		// ... 其他属性和方法 ...
 
+		/// <summary>
+		/// 创建订单的方法，检查菜单中是否包含所点的食物，如果包含，返回订单对象；否则，提示食物不在菜单中。
+		/// </summary>
+		/// <param name="foodItem">所点的食物名称</param>
+		/// <param name="cook">实现了 ICookable 接口的厨师对象</param>
+		/// <param name="customer">客人对象</param>
 		public Order CreateOrder(string foodItem, Customer customer)
 		{
 				if (_menu.Contains(foodItem))
@@ -314,32 +332,32 @@ namespace Food;
 /// <summary>
 /// 普通员工类，表示普通员工
 /// </summary>
-public abstract class Employee
+public abstract class EmployeeBase
 {
-	public abstract string _name { get; set; }
+	public abstract string Name { get; init; }
 	public abstract bool IsAvailable { get; set; }
 
 	public Employee(string name)
 	{
-		_name = name;
+		Name = name;
 	}
 }
 
 /// <summary>
 /// 厨师类，表示具备做饭技能的员工
 /// </summary>
-public class Chef : Employee, ICookable
+public class Chef : EmployeeBase, ICookable
 {
-	public override string _name { get; set; }
+	public override string Name { get; init; }
 	public override bool IsAvailable { get; set; } = true;
 
 	public Chef(string name) : base(name)
 	{
-		_name = name;
+		Name = name;
 	}
 	public void Cook(string foodItem)
 	{
-		Console.WriteLine($"Cook {_name} is cooking {foodItem}");
+		Console.WriteLine($"Cook {Name} is cooking {foodItem}");
 	}
 }
 ```
@@ -347,41 +365,47 @@ public class Chef : Employee, ICookable
 同时，对于 Restaurant.cs
 
 ```csharp
-/// Restaurant.cs
-using System;
-namespace Food;
-
 /// <summary>
 /// 餐馆类，包含餐馆的基本信息，如名称、地址和菜单。
 /// </summary>
 public class Restaurant
 {
-		public string _name { get; set; }
-		public string _address { get; set; }
-		public List<string> _menu { get; set; }
-		public List<Employee> _employees { get; set; } = new List<Employee>();
+	public string Name { get; init; }
+	public List<string> Menu { get; set; } = new List<string>();
+	public List<EmployeeBase> Employees { get; set; } = new List<EmployeeBase>();
 
-		public Restaurant(string name, string address)
-		{
-				_name = name;
-				_address = address;
-				_menu = new List<string>();
-		}
+	public Restaurant(string name)
+	{
+		Name = name;
+	}
 
-		public Order CreateOrder(string foodItem, ICookable cook, Customer customer)
+	/// <summary>
+	/// 创建订单的方法，检查菜单中是否包含所点的食物，如果包含，则调用厨师的 Cook 方法进行烹饪，并返回订单对象；否则，提示食物不在菜单中。
+	/// </summary>
+	/// <param name="foodItem">所点的食物名称</param>
+	/// <param name="customer">客人对象</param>
+	public Order CreateOrder(string foodItem, Customer customer)
+	{
+		if (Menu.Contains(foodItem))
 		{
-				if (_menu.Contains(foodItem))
-				{
-						cook.CookFood(foodItem);
-						Console.WriteLine($"Order created: {foodItem} from {_name} to {customer._name}");
-						return order;
-				}
-				else
-				{
-						Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
-						return null;
-				}
+			var cook = from employee in Employees
+								 where employee is ICookable && employee.IsAvailable
+								 select employee as ICookable;
+			if (cook == null)
+			{
+				Console.WriteLine("No available cook found.");
+				return null;
+			}
+			cook.First().Cook(foodItem);
+			Console.WriteLine($"Order created: {foodItem} from {Name} to {customer.Name}");
+			return new Order(Name, customer.Address, foodItem);
 		}
+		else
+		{
+			Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
+			return null;
+		}
+	}
 }
 ```
 
@@ -400,10 +424,10 @@ class Program
 		static void Main(string[] args)
 		{
 				// 创建餐馆对象
-				Restaurant restaurant = new Restaurant("Delicious Food", "123 Main St");
-
+				Restaurant restaurant = new Restaurant("Delicious Food");
 				// 创建厨师对象
-				Cook chef = new Cook("Alice");
+				Chef chef = new Chef("Alice");
+				restaurant.Employees.Add(chef);
 
 				// 创建骑手对象
 				DeliveryDriver driver = new DeliveryDriver("Charlie");
@@ -412,16 +436,16 @@ class Program
 				Customer customer = new Customer("David", "456 Elm St");
 
 				// 添加菜单项
-				restaurant._menu.Add("Pork Rice");
-				restaurant._menu.Add("Beef Noodles");
+				restaurant.Menu.Add("Pork Rice");
+				restaurant.Menu.Add("Beef Noodles");
 
 				// 创建订单对象
 				Order order1 = restaurant.CreateOrder("Pork Rice", customer);
 				Order order2 = restaurant.CreateOrder("Beef Noodles", customer);
 
 				// 骑手接收订单
-				driver.AddOrder(order1);
-				driver.AddOrder(order2);
+				driver.Orders.Add(order1);
+				driver.Orders.Add(order2);
 
 				// 骑手送餐
 				driver.DeliverOrders();
@@ -431,5 +455,710 @@ class Program
 				customer.ReceiveOrder(order2);
 		}
 }
+```
 
+就此，一个通过接口实现依赖反转的外卖程序完成了，如果一切正常的话，你应该会得到如下输出
+
+```txt
+Cook Alice is cooking Pork Rice
+Order created: Pork Rice from Delicious Food to David
+Cook Alice is cooking Beef Noodles
+Order created: Beef Noodles from Delicious Food to David
+Delivering order Delicious Food to 456 Elm St with food item Pork Rice
+Delivering order Delicious Food to 456 Elm St with food item Beef Noodles
+Customer David received order from Delicious Food with food item Pork Rice
+Customer David received order from Delicious Food with food item Beef Noodles
+```
+
+## 五、其他员工
+
+显然，只有厨师的餐厅还不够，而且，当前的餐厅也不够灵活，毕竟，餐厅的员工可能是厨师，也可能是服务员，也可能是清洁工。
+
+让我们来定义更多接口，来表示不同的员工技能,以及多样的餐厅。
+
+```csharp
+/// IWaitable.cs
+namespace Food;
+
+/// <summary>
+/// IWaiter 接口，表示具备服务技能的员工。
+/// </summary>
+public interface IWaitable
+{
+		void Serve(string foodItem);
+}
+```
+
+```csharp
+/// ICleanable.cs
+namespace Food;
+
+/// <summary>
+/// ICleaner 接口，表示具备清洁技能的员工。
+/// </summary>
+public interface ICleanable
+{
+		void Clean();
+}
+```
+
+```csharp
+/// Employee.cs
+namespace Food;
+
+// Chef and EmployeeBase classes remain the same
+
+/// <summary>
+/// 服务员类，表示具备服务技能的员工
+/// </summary>
+public class Waiter : EmployeeBase, IWaitable
+{
+	public override string Name { get; init; }
+	public override bool IsAvailable { get; set; } = true;
+
+	public Waiter(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public void Serve(string foodItem)
+	{
+		Console.WriteLine($"Waiter {Name} is serving {foodItem}");
+	}
+}
+
+/// <summary>
+/// 清洁工类，表示具备清洁技能的员工
+/// </summary>
+public class Cleaner : EmployeeBase, ICleanable
+{
+	public override string Name { get; init; }
+	public override bool IsAvailable { get; set; } = true;
+
+	public Cleaner(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public void Clean()
+	{
+		Console.WriteLine($"Cleaner {Name} is cleaning the restaurant");
+	}
+}
+```
+
+```csharp
+/// IDrinkable.cs
+namespace Food;
+
+/// <summary>
+/// IDrinkable 接口, 表示具备提供饮品能力的接口。
+/// </summary>
+public interface IDrinkable
+{
+	/// <summary>
+	/// 创建饮品订单的方法，检查菜单中是否包含所点的饮品，如果包含，则返回订单对象；否则，提示饮品不在菜单中。
+	/// </summary>
+	/// <param name="drinkItem">被点的饮品。</param>
+	/// <param name="customer">下单的顾客。</param>
+	void CreateDrinkOrder(string drinkItem, Customer customer);
+}
+```
+
+```csharp
+/// IEatable.cs
+namespace Food;
+
+/// <summary>
+/// IEatable 接口, 表示具备提供食物能力的接口。
+/// </summary>
+public interface IEatable
+{
+	/// <summary>
+	/// 创建食物订单的方法，检查菜单中是否包含所点的食物，如果包含，则返回订单对象；否则，提示食物不在菜单中。
+	/// </summary>
+	/// <param name="foodItem">被点的食物。</param>
+	/// <param name="customer">下单的顾客。</param>
+	void CreateEatOrder(string foodItem, Customer customer);
+}
+```
+
+```csharp
+/// Restaurant.cs
+namespace Food;
+
+/// <summary>
+/// RestaurantBase 抽象类，表示餐馆的基本信息和行为。
+/// </summary>
+public abstract class RestaurantBase
+{
+	public abstract string Name { get; init; }
+	public virtual List<string> FoodMenu { get; set; }
+	public virtual List<string> DrinkMenu { get; set; }
+	public abstract List<EmployeeBase> Employees { get; set; }
+
+	public RestaurantBase(string name)
+	{
+		Name = name;
+	}
+
+	public abstract void CleanRestaurant();
+}
+
+/// <summary>
+/// 食物餐馆类，表示提供食物的餐馆。
+/// </summary>
+public class FoodRestaurant : RestaurantBase, IEatable
+{
+	public override string Name { get; init; }
+	public override List<string> FoodMenu { get; set; } = new List<string>();
+	public override List<EmployeeBase> Employees { get; set; } = new List<EmployeeBase>();
+
+	public FoodRestaurant(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public override void CleanRestaurant()
+	{
+		var cleaner = from employee in Employees
+									where employee is ICleanable && employee.IsAvailable
+									select employee as ICleanable;
+		if (cleaner == null)
+		{
+			Console.WriteLine("No available cleaner found.");
+			return;
+		}
+		cleaner.First().Clean();
+		Console.WriteLine($"Restaurant {Name} has been cleaned.");
+	}
+
+	public Order CreateEatOrder(string foodItem, Customer customer)
+	{
+		if (FoodMenu.Contains(foodItem))
+		{
+			var cook = from employee in Employees
+								 where employee is ICookable && employee.IsAvailable
+								 select employee as ICookable;
+			if (cook == null)
+			{
+				Console.WriteLine("No available cook found.");
+				return null;
+			}
+			cook.First().Cook(foodItem);
+
+			var waiter = from employee in Employees
+									 where employee is IWaitable && employee.IsAvailable
+									 select employee as IWaitable;
+			if (waiter == null)
+			{
+				Console.WriteLine("No available waiter found.");
+				return null;
+			}
+			waiter.First().Serve(foodItem);
+			Console.WriteLine($"Order created: {foodItem} from {Name} to {customer.Name}");
+			return new Order(Name, customer.Address, foodItem);
+		}
+		else
+		{
+			Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
+			return null;
+		}
+	}
+}
+
+/// <summary>
+/// 饮品餐馆类，表示提供饮品的餐馆。
+/// </summary>
+public class DrinkRestaurant : RestaurantBase, IDrinkable
+{
+	public override string Name { get; init; }
+	public override List<string> DrinkMenu { get; set; } = new List<string>();
+	public override List<EmployeeBase> Employees { get; set; } = new List<EmployeeBase>();
+
+	public DrinkRestaurant(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public override void CleanRestaurant()
+	{
+		var cleaner = from employee in Employees
+									where employee is ICleanable && employee.IsAvailable
+									select employee as ICleanable;
+		if (cleaner == null)
+		{
+			Console.WriteLine("No available cleaner found.");
+			return;
+		}
+		cleaner.First().Clean();
+		Console.WriteLine($"Restaurant {Name} has been cleaned.");
+	}
+
+	public Order CreateDrinkOrder(string drinkItem, Customer customer)
+	{
+		if (DrinkMenu.Contains(drinkItem))
+		{
+			var waiter = from employee in Employees
+									 where employee is IWaitable && employee.IsAvailable
+									 select employee as IWaitable;
+			if (waiter == null)
+			{
+				Console.WriteLine("No available waiter found.");
+				return null;
+			}
+			waiter.First().Serve(drinkItem);
+			Console.WriteLine($"Order created: {drinkItem} from {Name} to {customer.Name}");
+			return new Order(Name, customer.Address, drinkItem);
+		}
+		else
+		{
+			Console.WriteLine($"Sorry, {drinkItem} is not available in the menu.");
+			return null;
+		}
+	}
+}
+```
+
+这时，对于 Program.cs
+
+```csharp
+/// <summary>
+/// 主程序类，包含程序的入口点。
+/// </summary>
+class Program
+{
+	static void Main(string[] args)
+	{
+		// 创建食物餐馆、员工和顾客对象
+		FoodRestaurant foodRestaurant = new FoodRestaurant("Food Paradise");
+		foodRestaurant.FoodMenu.AddRange(new List<string> { "Burger", "Pizza", "Pasta" });
+		foodRestaurant.Employees.Add(new Chef("John"));
+		foodRestaurant.Employees.Add(new Waiter("Alice"));
+		foodRestaurant.Employees.Add(new Cleaner("Bob"));
+
+		// 创建饮品餐馆、员工和顾客对象
+		DrinkRestaurant drinkRestaurant = new DrinkRestaurant("Drink Heaven");
+		drinkRestaurant.DrinkMenu.AddRange(new List<string> { "Coke", "Juice", "Water" });
+		drinkRestaurant.Employees.Add(new Waiter("Eve"));
+		drinkRestaurant.Employees.Add(new Cleaner("Charlie"));
+
+		// 创建骑手、顾客对象
+		DeliveryDriver deliveryDriver = new DeliveryDriver("Mike");
+		Customer customer = new Customer("David", "123 Main St");
+
+		// 创建食物订单
+		var foodOrder = foodRestaurant.CreateEatOrder("Pizza", customer);
+
+		// 创建饮品订单
+		var drinkOrder = drinkRestaurant.CreateDrinkOrder("Coke", customer);
+
+		// 清洁餐馆
+		foodRestaurant.CleanRestaurant();
+		drinkRestaurant.CleanRestaurant();
+
+		// 骑手送餐
+		deliveryDriver.Orders.Add(foodOrder);
+		deliveryDriver.Orders.Add(drinkOrder);
+		deliveryDriver.DeliverOrders();
+
+		// 顾客接收订单
+		customer.ReceiveOrder(foodOrder);
+		customer.ReceiveOrder(drinkOrder);
+	}
+}
+```
+
+一切正常（可能也存在代码error，大概率是因为我没有复制好代码，这时请参考第六节完整代码实现）的话，你应该会得到如下输出
+
+```txt
+Cook John is cooking Pizza
+Waiter Alice is serving Pizza
+Order created: Pizza from Food Paradise to David
+Waiter Eve is serving Coke
+Order created: Coke from Drink Heaven to David
+Cleaner Bob is cleaning the restaurant
+Restaurant Food Paradise has been cleaned.
+Cleaner Charlie is cleaning the restaurant
+Restaurant Drink Heaven has been cleaned.
+Delivering order Food Paradise to 123 Main St with food item Pizza
+Delivering order Drink Heaven to 123 Main St with food item Coke
+Customer Food Paradise received order from 123 Main St with food item Pizza
+Customer Drink Heaven received order from 123 Main St with food item Coke
+```
+
+## 六、完整代码实现（单文件）
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace Food;
+
+/// <summary>
+/// IDrinkable 接口, 表示具备提供饮品能力的接口。
+/// </summary>
+public interface IDrinkable
+{
+	/// <summary>
+	/// 创建饮品订单的方法，检查菜单中是否包含所点的饮品，如果包含，则返回订单对象；否则，提示饮品不在菜单中。
+	/// </summary>
+	/// <param name="drinkItem">被点的饮品。</param>
+	/// <param name="customer">下单的顾客。</param>
+	Order CreateDrinkOrder(string drinkItem, Customer customer);
+}
+
+/// <summary>
+/// IEatable 接口, 表示具备提供食物能力的接口。
+/// </summary>
+public interface IEatable
+{
+	/// <summary>
+	/// 创建食物订单的方法，检查菜单中是否包含所点的食物，如果包含，则返回订单对象；否则，提示食物不在菜单中。
+	/// </summary>
+	/// <param name="foodItem">被点的食物。</param>
+	/// <param name="customer">下单的顾客。</param>
+	Order CreateEatOrder(string foodItem, Customer customer);
+}
+
+/// <summary>
+/// ICookable 接口，表示具备做饭技能的员工。
+/// </summary>
+public interface ICookable
+{
+	void Cook(string foodItem);
+}
+
+/// <summary>
+/// IWaiter 接口，表示具备服务技能的员工。
+/// </summary>
+public interface IWaitable
+{
+	void Serve(string foodItem);
+}
+
+/// <summary>
+/// ICleaner 接口，表示具备清洁技能的员工。
+/// </summary>
+public interface ICleanable
+{
+	void Clean();
+}
+
+/// <summary>
+/// 订单类，包含订单的基本信息，如起点、目的地和食物内容。
+/// </summary>
+public class Order
+{
+	public string Origin { get; init; }
+	public string Destination { get; init; }
+	public bool IsDelivered { get; set; } = false;
+	public string FoodItem { get; init; }
+
+	public Order(string origin, string destination, string foodItem)
+	{
+		Origin = origin;
+		Destination = destination;
+		FoodItem = foodItem;
+	}
+}
+
+/// <summary>
+/// RestaurantBase 抽象类，表示餐馆的基本信息和行为。
+/// </summary>
+public abstract class RestaurantBase
+{
+	public abstract string Name { get; init; }
+	public virtual List<string> FoodMenu { get; set; }
+	public virtual List<string> DrinkMenu { get; set; }
+	public abstract List<EmployeeBase> Employees { get; set; }
+
+	public RestaurantBase(string name)
+	{
+		Name = name;
+	}
+
+	public abstract void CleanRestaurant();
+}
+
+/// <summary>
+/// 食物餐馆类，表示提供食物的餐馆。
+/// </summary>
+public class FoodRestaurant : RestaurantBase, IEatable
+{
+	public override string Name { get; init; }
+	public override List<string> FoodMenu { get; set; } = new List<string>();
+	public override List<EmployeeBase> Employees { get; set; } = new List<EmployeeBase>();
+
+	public FoodRestaurant(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public override void CleanRestaurant()
+	{
+		var cleaner = from employee in Employees
+									where employee is ICleanable && employee.IsAvailable
+									select employee as ICleanable;
+		if (cleaner == null)
+		{
+			Console.WriteLine("No available cleaner found.");
+			return;
+		}
+		cleaner.First().Clean();
+		Console.WriteLine($"Restaurant {Name} has been cleaned.");
+	}
+
+	public Order CreateEatOrder(string foodItem, Customer customer)
+	{
+		if (FoodMenu.Contains(foodItem))
+		{
+			var cook = from employee in Employees
+								 where employee is ICookable && employee.IsAvailable
+								 select employee as ICookable;
+			if (cook == null)
+			{
+				Console.WriteLine("No available cook found.");
+				return null;
+			}
+			cook.First().Cook(foodItem);
+
+			var waiter = from employee in Employees
+									 where employee is IWaitable && employee.IsAvailable
+									 select employee as IWaitable;
+			if (waiter == null)
+			{
+				Console.WriteLine("No available waiter found.");
+				return null;
+			}
+			waiter.First().Serve(foodItem);
+			Console.WriteLine($"Order created: {foodItem} from {Name} to {customer.Name}");
+			return new Order(Name, customer.Address, foodItem);
+		}
+		else
+		{
+			Console.WriteLine($"Sorry, {foodItem} is not available in the menu.");
+			return null;
+		}
+	}
+}
+
+/// <summary>
+/// 饮品餐馆类，表示提供饮品的餐馆。
+/// </summary>
+public class DrinkRestaurant : RestaurantBase, IDrinkable
+{
+	public override string Name { get; init; }
+	public override List<string> DrinkMenu { get; set; } = new List<string>();
+	public override List<EmployeeBase> Employees { get; set; } = new List<EmployeeBase>();
+
+	public DrinkRestaurant(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public override void CleanRestaurant()
+	{
+		var cleaner = from employee in Employees
+									where employee is ICleanable && employee.IsAvailable
+									select employee as ICleanable;
+		if (cleaner == null)
+		{
+			Console.WriteLine("No available cleaner found.");
+			return;
+		}
+		cleaner.First().Clean();
+		Console.WriteLine($"Restaurant {Name} has been cleaned.");
+	}
+
+	public Order CreateDrinkOrder(string drinkItem, Customer customer)
+	{
+		if (DrinkMenu.Contains(drinkItem))
+		{
+			var waiter = from employee in Employees
+									 where employee is IWaitable && employee.IsAvailable
+									 select employee as IWaitable;
+			if (waiter == null)
+			{
+				Console.WriteLine("No available waiter found.");
+				return null;
+			}
+			waiter.First().Serve(drinkItem);
+			Console.WriteLine($"Order created: {drinkItem} from {Name} to {customer.Name}");
+			return new Order(Name, customer.Address, drinkItem);
+		}
+		else
+		{
+			Console.WriteLine($"Sorry, {drinkItem} is not available in the menu.");
+			return null;
+		}
+	}
+}
+
+/// <summary>
+/// 普通员工类，表示普通员工
+/// </summary>
+public abstract class EmployeeBase
+{
+	public abstract string Name { get; init; }
+	public abstract bool IsAvailable { get; set; }
+
+	public EmployeeBase(string name)
+	{
+		Name = name;
+	}
+}
+
+/// <summary>
+/// 厨师类，表示具备做饭技能的员工
+/// </summary>
+public class Chef : EmployeeBase, ICookable
+{
+	public override string Name { get; init; }
+	public override bool IsAvailable { get; set; } = true;
+
+	public Chef(string name) : base(name)
+	{
+		Name = name;
+	}
+	public void Cook(string foodItem)
+	{
+		Console.WriteLine($"Cook {Name} is cooking {foodItem}");
+	}
+}
+
+/// <summary>
+/// 服务员类，表示具备服务技能的员工
+/// </summary>
+public class Waiter : EmployeeBase, IWaitable
+{
+	public override string Name { get; init; }
+	public override bool IsAvailable { get; set; } = true;
+
+	public Waiter(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public void Serve(string foodItem)
+	{
+		Console.WriteLine($"Waiter {Name} is serving {foodItem}");
+	}
+}
+
+/// <summary>
+/// 清洁工类，表示具备清洁技能的员工
+/// </summary>
+public class Cleaner : EmployeeBase, ICleanable
+{
+	public override string Name { get; init; }
+	public override bool IsAvailable { get; set; } = true;
+
+	public Cleaner(string name) : base(name)
+	{
+		Name = name;
+	}
+
+	public void Clean()
+	{
+		Console.WriteLine($"Cleaner {Name} is cleaning the restaurant");
+	}
+}
+
+/// <summary>
+/// 骑手类，包含骑手的基本信息，如姓名和订单列表。
+/// </summary>
+public class DeliveryDriver
+{
+	public string Name { get; init; }
+	public List<Order> Orders { get; set; } = new List<Order>();
+
+	public DeliveryDriver(string name)
+	{
+		Name = name;
+	}
+
+	/// <summary>
+	/// 模拟骑手送餐的过程，遍历订单列表并打印送餐信息，送完后清空订单列表。
+	/// </summary>
+	public void DeliverOrders()
+	{
+		foreach (var order in Orders)
+		{
+			Console.WriteLine($"Delivering order {order.Origin} to {order.Destination} with food item {order.FoodItem}");
+			order.IsDelivered = true;
+		}
+		Orders.Clear();
+	}
+}
+
+/// <summary>
+/// 客人类，包含客人的基本信息，如姓名和地址。
+/// </summary>
+public class Customer
+{
+	public string Name { get; init;	 }
+	public string Address { get; init; }
+
+	public Customer(string name, string address)
+	{
+		Name = name;
+		Address = address;
+	}
+
+	public void ReceiveOrder(Order order)
+	{
+		if (!order.IsDelivered)
+		{
+			Console.WriteLine($"Order from {order.Origin} to {order.Destination} with food item {order.FoodItem} has not been delivered yet.");
+			return;
+		}
+		Console.WriteLine($"Customer {order.Origin} received order from {order.Destination} with food item {order.FoodItem}");
+	}
+}
+
+/// <summary>
+/// 主程序类，包含程序的入口点。
+/// </summary>
+class Program
+{
+	static void Main(string[] args)
+	{
+		// 创建食物餐馆、员工和顾客对象
+		FoodRestaurant foodRestaurant = new FoodRestaurant("Food Paradise");
+		foodRestaurant.FoodMenu.AddRange(new List<string> { "Burger", "Pizza", "Pasta" });
+		foodRestaurant.Employees.Add(new Chef("John"));
+		foodRestaurant.Employees.Add(new Waiter("Alice"));
+		foodRestaurant.Employees.Add(new Cleaner("Bob"));
+
+		// 创建饮品餐馆、员工和顾客对象
+		DrinkRestaurant drinkRestaurant = new DrinkRestaurant("Drink Heaven");
+		drinkRestaurant.DrinkMenu.AddRange(new List<string> { "Coke", "Juice", "Water" });
+		drinkRestaurant.Employees.Add(new Waiter("Eve"));
+		drinkRestaurant.Employees.Add(new Cleaner("Charlie"));
+
+		// 创建骑手、顾客对象
+		DeliveryDriver deliveryDriver = new DeliveryDriver("Mike");
+		Customer customer = new Customer("David", "123 Main St");
+
+		// 创建食物订单
+		var foodOrder = foodRestaurant.CreateEatOrder("Pizza", customer);
+
+		// 创建饮品订单
+		var drinkOrder = drinkRestaurant.CreateDrinkOrder("Coke", customer);
+
+		// 清洁餐馆
+		foodRestaurant.CleanRestaurant();
+		drinkRestaurant.CleanRestaurant();
+
+		// 骑手送餐
+		deliveryDriver.Orders.Add(foodOrder);
+		deliveryDriver.Orders.Add(drinkOrder);
+		deliveryDriver.DeliverOrders();
+
+		// 顾客接收订单
+		customer.ReceiveOrder(foodOrder);
+		customer.ReceiveOrder(drinkOrder);
+	}
+}
 ```
