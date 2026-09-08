@@ -1,0 +1,33 @@
+---
+title: hello-my-skills
+date: 2026-09-07
+topic: [misc, ai, engineering, programming]
+---
+
+## 一、导入
+
+起因是刷 [Github Explore](https://github.com/explore)，注意到了 [ECC](https://github.com/affaan-m/ECC) 这个非常变态的项目
+
+不同于大多数的 skills/plugins 仓库为某个或者一套 harness 使用，ECC 更像是在harness 层面之上又搭建一层抽象，不是将现有的那些多个 harness 聚集到一起工作的工作台，而是一套将多年来工程师的成功开发经验
+
+个人的力量终究还是干不过一整个团队，这样看来接下来的 skills，或许更接近一个润滑油，作为优化个人开发体验的一个类似于口头禅或者洁癖产生的习惯总结来看了。
+
+## 二、hello-my-skills
+
+这里是我个人使用的一套 [hello-my-skills](https://github.com/dkj121/hello-my-skills) 准确来说更像是一个帮助我使用其他成熟工作流的小工具。
+
+> 就核心内容主要参考了 [mattpocock 的 skills](https://github.com/mattpocock/skills) 主要修改只是将其中硬性关联的文件关联去除（例如 SPEC.md、CONTEXT.md 等），同时保留了最精辟的（或者说我个人也很认同的）`/grill` 命令。
+
+考虑到 LLM 真的越来越聪明，在正儿八经的开发过程中，AI 管理整个 WORKFLOW 也并不难以想象，但是除了 ECC 这样通用的增智/规范项目，针对某个项目，针对这个项目背景下的工作内容来进行的细节把握依旧是很难得以完整解决，LLM 是概率机器，Harness 是工作平台，MCP 则是转接口，而当前看来 Skills/Plugins/Hooks 便是规范 LLM 行为的指导员
+
+就 [claude code](https://claude.com/product/claude-code) 而言，作为一家以**安全**为核心的公司开发出来的产品，~~没有意外的话~~应该内置了大量所谓的**行为规范**很难说是不是左右脑互搏，但是就扯到这里吧
+
+> 我脑子已经乱了反正
+
+而除了~~照抄~~`/grill`以外，这组 skills 中着重强调了在用户精选前提下，强调面向用户个人选择，基于用户已经搭建好的自己属性的 harness，来完成接下来的工作（但是这终究还是我的个人习惯，仁者见仁，智者见智吧）
+
+## 三、/to-docs and /generate-project-skills
+
+作为我所有命令中最细化的两个命令，也是最可有可无的两个，前者主要是生成一个能供用户/AI直接预览的 ARCHITECTURE.md（结构）/ SPEC.md（目标）/ WORKFLOW.md（流程） 后者则是生成供 harness 注入给 AI 来规范行为的可见规则
+
+之所以说是可有可无，主要是像 claude code 这样的 harness 很喜欢隐蔽的记住用户之前的行为，并在重复类似内容时基于记录做出规范。
