@@ -4,6 +4,8 @@ date: 2026-09-07
 topic: [misc, ai, engineering, programming]
 ---
 
+> update at 2026-9-11
+
 ## 一、导入
 
 起因是刷 [Github Explore](https://github.com/explore)，注意到了 [ECC](https://github.com/affaan-m/ECC) 这个非常变态的项目
@@ -30,4 +32,12 @@ topic: [misc, ai, engineering, programming]
 
 作为我所有命令中最细化的两个命令，也是最可有可无的两个，前者主要是生成一个能供用户/AI直接预览的 ARCHITECTURE.md（结构）/ SPEC.md（目标）/ WORKFLOW.md（流程） 后者则是生成供 harness 注入给 AI 来规范行为的可见规则
 
-之所以说是可有可无，主要是像 claude code 这样的 harness 很喜欢隐蔽的记住用户之前的行为，并在重复类似内容时基于记录做出规范。
+> 之所以说是可有可无，主要是像 claude code 这样的 harness 很喜欢隐蔽的记住用户之前的行为，并在重复类似内容时基于记录做出规范。
+
+## 四、ECC 使用体验
+
+ECC 中提供了大量的 Hook ，其中最核心的部分依旧是品味用户的提示词.
+
+准确来说，ECC 就是一个让 AI 在工作过程中死死扣住程序员话中的每一个点，在执行某个具有破坏性行为（更改/新建文件、版本控制之类的）任务时，返回用户提示词，或者拦截当前任务，再次询问用户能不能，怎么做之类的细节。
+
+但是加入 ECC 后对于开发者来说常常会感到非常难受，一方面它通过反复注入极大程度上限制了 AI 的自由发挥，另一方面，大多数开发者更希望能够有一个可以顺利的实现绝大多数任务，而非反复催促开发者确认具体细节。
