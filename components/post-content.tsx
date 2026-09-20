@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { type ReactNode, useEffect } from "react";
 
 interface PostContentProps {
@@ -71,14 +72,22 @@ export function PostContent({
 				{title}
 			</h1>
 
-			{/* Metadata */}
-			<p className="mb-8 text-sm text-[var(--color-text-muted)]">
-				{new Date(date).toLocaleDateString("zh-CN", {
-					year: "numeric",
-					month: "long",
-					day: "numeric",
-				})}
-			</p>
+			{/* Metadata + back navigation */}
+			<div className="mb-8 flex items-baseline justify-between gap-4">
+				<p className="text-sm text-[var(--color-text-muted)]">
+					{new Date(date).toLocaleDateString("zh-CN", {
+						year: "numeric",
+						month: "long",
+						day: "numeric",
+					})}
+				</p>
+				<Link
+					href="/"
+					className="shrink-0 text-xs font-[var(--font-mono)] tracking-[0.2em] text-[var(--color-text-muted)] uppercase transition-colors hover:text-[var(--color-accent)]"
+				>
+					← Home
+				</Link>
+			</div>
 
 			{/* Divider */}
 			<div className="mb-8 border-t border-[var(--color-divider)]" />
