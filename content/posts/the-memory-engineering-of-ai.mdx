@@ -26,11 +26,13 @@ topic: [ai, engineering]
 
 而相较而言，当前的人工智能甚至不能说是 AGI 的一个分支。
 
-而以下记忆工程，则是基于当前人工智能强度，所做出的一组尝试。
+而以下记忆工程，则是基于当前与人工智能的交互方式做出的客户端调节。
 
 ## 二、[context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
 **上下文** 决定 ai 开发上限，对于单个工程的单次 session ，context 在开发中起到关键作用。
+
+很多开发者没意识到的是，harness 实际上还负责上下文拼接，每次 prompt 的发送，不仅仅是发送你通过键盘发送过去的要求，AI 在上次回复时生成一份 Summary（项目现状与简介，可以说就是一份 handoff），而 harness 进一步将 AI 上次生成的 Summary + 你本次的命令 + 当前的 harness 状态（plan/auto/manual 等等）+ hooks + skills 等等。
 
 > 对于复杂工程，同时也存在着类似于 [agentmemory](https://github.com/rohitg00/agentmemory)、[skills/handoff](https://github.com/mattpocock/skills/blob/main/skills/productivity/handoff/SKILL.md) 这样的负责处理 session 间信息传递的方法。
 
@@ -42,7 +44,7 @@ topic: [ai, engineering]
 
 作为管理 ai 记忆的一个重要工程，[Anthropic](https://claude.com/blog/best-practices-for-prompt-engineering)、[OpenAI](https://developers.openai.com/api/docs/guides/prompt-engineering) 都曾描述过其在开发过程中的关键作用。
 
-同时，作为个人实际工作中与 AI 交互的主要途径，怎么样正确的表达当前需求、怎么样适当的提供上下文背景、怎么样调用合适的工具，这些都需要个人在实战中在一次次燃烧 token 中总结出来。
+同时，作为个人实际工作中与 AI 交互的主要途径，怎么样正确的表达当前需求、怎么样适当的提供相关的上下文背景、怎么样调用合适的工具，这些都需要个人在实战中总结出来。
 
 ## 四、[skills](https://support.claude.com/en/articles/12512176-what-are-skills)
 
