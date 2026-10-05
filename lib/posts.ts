@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
+import { evaluate } from "@mdx-js/mdx";
+import * as runtime from "react/jsx-runtime";
+import type { ComponentType } from "react";
 import remarkGfm from "remark-gfm";
-import remarkRehype from "remark-rehype";
 import rehypeHighlight from "rehype-highlight";
-import rehypeStringify from "rehype-stringify";
 import { visit } from "unist-util-visit";
 import type { Root, Image, Code } from "mdast";
 
@@ -71,7 +71,7 @@ export interface PostMeta {
 }
 
 export interface PostWithContent extends PostMeta {
-	contentHtml: string;
+	Content: ComponentType;
 }
 
 function parseTopic(topic: unknown): string {
@@ -139,20 +139,17 @@ export async function getPostBySlug(
 	}
 
 	const { data, content: mdBody } = matter(raw);
-	const result = await remark()
-		.use(remarkGfm)
-		.use(remarkTransformImagePaths)
-		.use(remarkMermaid)
-		.use(remarkRehype)
-		.use(rehypeHighlight)
-		.use(rehypeStringify)
-		.process(mdBody);
+	const { default: Content } = await evaluate(mdBody, {
+		...runtime,
+		remarkPlugins: [remarkGfm, remarkTransformImagePaths, remarkMermaid],
+		rehypePlugins: [rehypeHighlight],
+	});
 
 	return {
 		slug: decoded,
 		title: data.title ?? decoded,
 		date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "----",
 		topic: parseTopic(data.topic),
-		contentHtml: result.toString(),
+		Content,
 	};
 }
