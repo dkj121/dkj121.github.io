@@ -1,6 +1,8 @@
 # dkj121.github.io
 
-![image](designs/home-v4.png)
+![homepage](designs/bloghomepage.png)
+
+![postpage](designs/blogpostpage.png)
 
 dkj121`s blog with brown teminal style
 
