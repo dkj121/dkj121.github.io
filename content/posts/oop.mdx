@@ -241,6 +241,13 @@ class Program
 }
 ```
 
+```mermaid
+graph TD
+	Restaurant --> Employee
+	Restaurant --> Order --> Customer
+	DeliveryDriver --> Order
+```
+
 在这里，我们通过最简单的对象来实现了一个外卖服务系统的基本功能。每个类都代表了系统中的一个实体，并且通过方法和属性来定义它们的行为和状态。
 
 但是，随着系统的复杂度增加，我们可能需要引入更多的类和接口来管理不同的功能和行为，这就是面向对象编程的魅力所在。
@@ -455,6 +462,16 @@ class Program
 				customer.ReceiveOrder(order2);
 		}
 }
+```
+
+```mermaid
+graph TD
+	Restaurant --> EmployeeBase
+	Restaurant --> ICookable
+	Chef --> EmployeeBase
+	Chef --> ICookable
+	Restaurant --> Order --> Customer
+	DeliveryDriver --> Order
 ```
 
 就此，一个通过接口实现依赖反转的外卖程序完成了，如果一切正常的话，你应该会得到如下输出
@@ -767,6 +784,28 @@ class Program
 		customer.ReceiveOrder(drinkOrder);
 	}
 }
+```
+
+```mermaid
+graph TD
+	RestaurantBase --> EmployeeBase
+	RestaurantBase --> ICleanable
+	RestaurantBase --> Order --> Customer
+	DrinkRestaurant --> IDrinkable
+	DrinkRestaurant --> ICookable
+	DrinkRestaurant --> IWaitable
+	DrinkRestaurant --> RestaurantBase
+	FoodRestaurant --> IEatable
+	FoodRestaurant --> ICookable
+	FoodRestaurant --> IWaitable
+	FoodRestaurant --> RestaurantBase
+	Chef --> EmployeeBase
+	Chef --> ICookable
+	Waiter --> EmployeeBase
+	Waiter --> IWaitable
+	Cleaner --> EmployeeBase
+	Cleaner --> ICleanable
+	DeliveryDriver --> Order
 ```
 
 一切正常（可能也存在代码error，大概率是因为我没有复制好代码，这时请参考第六节完整代码实现）的话，你应该会得到如下输出
