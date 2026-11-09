@@ -9,6 +9,7 @@ topic: [cpp, programming, build-systems]
 ## 一、导入
 
 > 正式打开 CMake 的大门之前，可以先去品鉴一下 25 年末诞生的 C++ 圣经：[The worst programming language of all time](https://www.youtube.com/watch?v=7fGB-hjc2Gc) 虽然标题起的很犀利，但是能喷 2h 也不是一般人
+> If you like C++, then you don`t know it well enough —— Lazo
 
 当我们构建项目时，必不可免地会遇到导入第三方库函数的情况，对于最原始的 C 语言，我们或许可以通过宏(Macros) + 头文件的形式来简单处理文件之间的依赖关系。
 
@@ -20,13 +21,15 @@ Build System 也就由此而生。
 
 > 一定不要忘记打开显示拓展名和显示隐藏和系统文件（下图展示 Windows 11）
 >
-> ![PixPin\_2026\-10\-17\_13\-56\-05\.png](../assets/build-systems/PixPin_2026-10-17_13-56-05.png)
+> ![PixPin_2026-10-17_13-56-05.png](../assets/build-systems/PixPin_2026-10-17_13-56-05.png)
 
-![PixPin\_2026\-10\-16\_21\-27\-25\.png](../assets/build-systems/PixPin_2026-10-16_21-27-25.png)
+![PixPin_2026-10-16_21-27-25.png](../assets/build-systems/PixPin_2026-10-16_21-27-25.png)
 
 先了解一下编译器，正如上图所示，对于不同的操作系统，我们有不同的常用编译器。而之所以存在不同的编译器，除了标配的操作系统（实际上，编译器并无操作系统之分，只不过是常用而已），最主要的问题是在早期 C\+\+ 研发中，诞生出了各种各样的编译环境（包括运行时库与 ABI），他们不过是跟随着不同的编译环境做出了相应的优化。
 
-![PixPin\_2026\-10\-16\_21\-22\-52\.png](../assets/build-systems/PixPin_2026-10-16_21-22-52.png)
+> 来自：[huazhang-cs-books](https://github.com/apachecn/huazhang-cs-books)（这个链接是华章计算机科学丛书扫描版的汇总仓库，大多数是国外优秀书籍的汉化版，下图取自[这个链接](https://github.com/apachecn/huazhang-cs-books/blob/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F.pdf)，感兴趣可以随便看看）
+
+![PixPin_2026-10-16_21-22-52.png](../assets/build-systems/PixPin_2026-10-16_21-22-52.png)
 
 ```Plain Text
 gcc -o hello hello.c
@@ -55,7 +58,7 @@ make build
 make run
 ```
 
-![PixPin\_2026\-10\-16\_20\-04\-37\.png](../assets/build-systems/PixPin_2026-10-16_20-04-37.png)
+![PixPin_2026-10-16_20-04-37.png](../assets/build-systems/PixPin_2026-10-16_20-04-37.png)
 
 然而，正如上图展示的那样，基于不同的操作系统，C++ 世界中存在不同的 Build System ，对于跨平台应用，C++ 世界中存在多种 Meta Build System，对于跨平台应用的不同 Meta Build System 我们还有进一步的 Meta Meta Build System，尝试进一步控制这些 Meta Build System（比如 [vcpkg](https://learn.microsoft.com/vcpkg/) 那样的包管理器，通过处理依赖那些依赖来处理构建中的依赖问题）
 
@@ -151,19 +154,34 @@ target_link_libraries(Calculator PRIVATE add)
 
 ```CMake
 # 添加目标库选项
-add_library(add INTERFACE)
+add_library(add STATIC)
 
 # 添加目标文件
 target_sources(add
-    INTERFACE
+    PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
+    PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/add.hpp
 )
 ```
 
-![PixPin\_2026\-10\-17\_15\-09\-45\.png](../assets/build-systems/PixPin_2026-10-17_15-09-45.png)
+注意到，在这里有两个关键字（官方文档中一般用 `<type>` 表示）：`INTERFACE`、`STATIC`、`PRIVATE`和`PUBLIC`，正如大多数支持 OOP 编程范式的语言一样， CMake 在管理项目时也使用了类似的思维模式，以下是几个相关的内容：
+
+|  关键字   | 作用范围（通常来讲） |                                                              含义                                                              |
+| :-------: | :------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
+|  STATIC   |      Libraries       |                                               `build`时创建静态库文件（.lib/.a）                                               |
+|  SHARED   |      Libraries       |                                            `build`时创建动态库文件（.dll+.lib/.so）                                            |
+|  MODULE   |      Libraries       |                                     `build`时生成动态模块（.dll/.so），由程序动态唤醒/加载                                     |
+|  OBJECT   |      Libraries       |                             `build`时生成目标文件（.obj/.o），供其他库/可执行文件使用（先不链接）                              |
+|  PUBLIC   |       Targets        |                                         标记其修饰的目标文件可用于自身构建/被他人使用                                          |
+|  PRIVATE  |       Targets        |                                               标记其修饰的目标文件可用于自身构建                                               |
+| INTERFACE |  Libraries、Targets  | 用于 Libraries 时，不生成二进制文件，主要传递头文件、编译选项和依赖<br />用于 Targets 时，标记其修饰的目标文件可用于被他人使用 |
 
 除了上述命令以外，我们还有很多高级命令/根据框架额外添加的命令来适配复杂多变的项目架构。
+
+![PixPin_2026-10-17_15-09-45.png](../assets/build-systems/PixPin_2026-10-17_15-09-45.png)
+
+但是大多数情况下都没必要使用后两列。
 
 ## 六、build
 
@@ -242,17 +260,17 @@ cmake -B ./build -DBUILD_FOR_WINDOWS_ONLY=ON
 
 而对于 cmake 项目来说，我们更推荐依照功能划分文件，如右图。
 
-![PixPin\_2026\-10\-17\_21\-59\-35\.png](../assets/build-systems/PixPin_2026-10-17_21-59-35.png)
+![PixPin_2026-10-17_21-59-35.png](../assets/build-systems/PixPin_2026-10-17_21-59-35.png)
 
-![PixPin\_2026\-10\-17\_22\-07\-10\.png](../assets/build-systems/PixPin_2026-10-17_22-07-10.png)
+![PixPin_2026-10-17_22-07-10.png](../assets/build-systems/PixPin_2026-10-17_22-07-10.png)
 
-![PixPin\_2026\-10\-17\_22\-09\-00\.png](../assets/build-systems/PixPin_2026-10-17_22-09-00.png)
+![PixPin_2026-10-17_22-09-00.png](../assets/build-systems/PixPin_2026-10-17_22-09-00.png)
 
 同时对于不同的项目类型，我们还有不同的项目架构：用于网络应用开发的 MVC（左图）、用于桌面应用开发的 MVVM（右图）等等。
 
-![image\.png](../assets/build-systems/image.png)
+![image.png](../assets/build-systems/image.png)
 
-![image\.png](../assets/build-systems/image%201.png)
+![image.png](../assets/build-systems/image%201.png)
 
 ## 十、拓展内容
 
@@ -265,4 +283,3 @@ cmake -B ./build -DBUILD_FOR_WINDOWS_ONLY=ON
 [bazel](https://bazel.build/)
 
 但是，~~鉴于 C++ 委员会一直不管不顾，~~不论是 build system、meta build system、meta meta build system 都没有一个确切的官方正式稳定版本，因此，对于普通开发者而言，如何掌控好自己的项目，如何一步一步构建出一个真正的便于维护的项目，就算是在现在的 AI 时代也永远是难以绕开的问题，以及成为 C++ 开发者的必由之路~~（氵氵氵）~~
-
